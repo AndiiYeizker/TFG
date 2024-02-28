@@ -51,7 +51,7 @@ public class AuthController {
         }
         if(result.hasErrors()){
             model.addAttribute("user",usuarioDTO);
-            return "/register/";
+            return "/registro";
         }
         usuarioService.guardarUsuario(usuarioDTO);
         return "redirect:/registro?success";
