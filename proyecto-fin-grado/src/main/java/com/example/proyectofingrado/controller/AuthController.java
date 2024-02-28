@@ -1,10 +1,13 @@
 package com.example.proyectofingrado.controller;
 
 import com.example.proyectofingrado.dto.UsuarioDTO;
+import com.example.proyectofingrado.entity.User;
 import com.example.proyectofingrado.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,11 +39,25 @@ public class AuthController {
     }
 
     //Endpoint para login submit request
-@PostMapping("/registro/guardar")
-    public String registro(@ModelAttribute("usuario") UsuarioDTO usuarioDTO){
+    @PostMapping("/registro/guardar")
+    public String registro(@Valid @ModelAttribute("usuario") UsuarioDTO usuarioDTO,
+                           BindingResult result,
+                           Model model){
+
+        User usuarioExistente = usuarioService.findUserByEmail(usuarioDTO.getEmail());
+
+        if(usuarioExistente!=null){
+            result.rejectValue("email", null,"Ya existe este email");
+        }
+        if(result.hasErrors()){
+            model.addAttribute("user",usuarioDTO);
+            return "/register/";
+        }
         usuarioService.guardarUsuario(usuarioDTO);
         return "redirect:/registro?success";
-   }
-
-
     }
+
+
+
+
+}

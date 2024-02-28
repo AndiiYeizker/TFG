@@ -37,6 +37,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     }
 
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
     private Role checkRoleExist(){
         Role role = new Role();
         role.setName("ROLE_ADMIN");
