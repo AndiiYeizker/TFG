@@ -36,10 +36,10 @@ public class AuthController {
     }
 
     //Endpoint para login submit request
-@PostMapping("/register/save")
+@PostMapping("/registro/guardar")
     public String registro(@ModelAttribute("usuario") UsuarioDTO usuarioDTO){
         usuarioService.guardarUsuario(usuarioDTO);
-        return "redirect:/register?success";
+        return "redirect:/registro?success";
    }
 
 
