@@ -6,9 +6,11 @@ import com.example.proyectofingrado.entity.User;
 import com.example.proyectofingrado.repository.RoleRepository;
 import com.example.proyectofingrado.repository.UserRepository;
 import com.example.proyectofingrado.service.UsuarioService;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 
    private UserRepository userRepository;
