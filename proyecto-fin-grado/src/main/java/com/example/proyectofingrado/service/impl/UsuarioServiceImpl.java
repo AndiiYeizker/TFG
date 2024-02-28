@@ -9,6 +9,8 @@ import com.example.proyectofingrado.service.UsuarioService;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -40,6 +42,23 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public List<UsuarioDTO> findAllUsers() {
+            List<User> users = userRepository.findAll();
+
+            return users.stream().map((user) -> mapToUserDTO(user)).collect(Collectors.toList());
+    }
+
+    private UsuarioDTO mapToUserDTO(User user){
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        String[]str = user.getName().split(" ");
+        usuarioDTO.setFirstName(str[0]);
+        usuarioDTO.setLastName(str[1]);
+        usuarioDTO.setEmail(user.getEmail());
+
+        return usuarioDTO;
     }
 
     private Role checkRoleExist(){
