@@ -1,12 +1,21 @@
 package com.example.proyectofingrado.controller;
 
-import com.example.proyectofingrado.dto.RegistroUserDTO;
+import com.example.proyectofingrado.dto.UsuarioDTO;
+import com.example.proyectofingrado.service.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AuthController {
+
+    private UsuarioService usuarioService;
+
+    public AuthController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
 
     //gestionar la pagina de login:
    @GetMapping("/index")
@@ -18,9 +27,18 @@ public class AuthController {
     @GetMapping("/registro")
     public String registrationForm(Model model){
         //creacion de objeto modelo
-        RegistroUserDTO usuario = new RegistroUserDTO();
+        UsuarioDTO usuario = new UsuarioDTO();
         model.addAttribute("usuario",usuario); //variable " la coge el html
 
         return "registro"; //nombre del html
     }
-}
+
+    //Endpoint para login submit request
+@PostMapping("/register/save")
+    public String registro(@ModelAttribute("usuario") UsuarioDTO usuarioDTO){
+        usuarioService.guardarUsuario(usuarioDTO);
+        return "redirect:/register?success";
+   }
+
+
+    }
