@@ -34,15 +34,15 @@ public class AuthController {
     @GetMapping("/registro")
     public String registrationForm(Model model){
         //creacion de objeto modelo
-        UsuarioDTO usuario = new UsuarioDTO();
-        model.addAttribute("usuario",usuario); //variable " la coge el html
+        UsuarioDTO user = new UsuarioDTO();
+        model.addAttribute("user",user); //variable " la coge el html
 
         return "registro"; //nombre del html
     }
 
     //Endpoint para login submit request
     @PostMapping("/registro/guardar")
-    public String registro(@Valid @ModelAttribute("usuario") UsuarioDTO usuarioDTO,
+    public String registro(@Valid @ModelAttribute("user") UsuarioDTO usuarioDTO,
                            BindingResult result,
                            Model model){
 

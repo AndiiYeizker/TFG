@@ -33,7 +33,7 @@ public class UsuarioServiceImpl implements UsuarioService {
        //ENCRIPTAMOS con spring security: (password encoder)
         user.setPassword(passwordEncoder.encode(usuarioDTO.getPassword()));
 
-        Role role = roleRepository.findByName("ADMIN");
+        Role role = roleRepository.findByName("ROLE_ADMIN");
         if(role ==null){
             role = checkRoleExist();
         }
@@ -65,7 +65,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private Role checkRoleExist(){
         Role role = new Role();
-        role.setName("ADMIN");
+        role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
     }
 }
