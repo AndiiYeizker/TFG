@@ -6,6 +6,7 @@ import com.example.proyectofingrado.entity.User;
 import com.example.proyectofingrado.repository.RoleRepository;
 import com.example.proyectofingrado.repository.UserRepository;
 import com.example.proyectofingrado.service.UsuarioService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -17,9 +18,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 
    private UserRepository userRepository;
    private RoleRepository roleRepository;
-    public UsuarioServiceImpl(UserRepository userRepository, RoleRepository roleRepository ) {
+   private PasswordEncoder passwordEncoder;
+    public UsuarioServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder ) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -27,10 +30,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         User user = new User();
         user.setName(usuarioDTO.getFirstName() + " " + usuarioDTO.getLastName());
         user.setEmail(usuarioDTO.getEmail());
-       //ENCRIPTAMOS con spring security:
-        user.setPassword(usuarioDTO.getPassword());
+       //ENCRIPTAMOS con spring security: (password encoder)
+        user.setPassword(passwordEncoder.encode(usuarioDTO.getPassword()));
 
-        Role role = roleRepository.findByName("ROLE_ADMIN");
+        Role role = roleRepository.findByName("ADMIN");
         if(role ==null){
             role = checkRoleExist();
         }
@@ -47,7 +50,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<UsuarioDTO> findAllUsers() {
             List<User> users = userRepository.findAll();
-
             return users.stream().map((user) -> mapToUserDTO(user)).collect(Collectors.toList());
     }
 
@@ -63,7 +65,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private Role checkRoleExist(){
         Role role = new Role();
-        role.setName("ROLE_ADMIN");
+        role.setName("ADMIN");
         return roleRepository.save(role);
     }
 }

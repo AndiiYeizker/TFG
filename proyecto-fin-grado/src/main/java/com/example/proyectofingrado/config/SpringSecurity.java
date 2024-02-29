@@ -29,9 +29,9 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/registro/**").permitAll()
-                .requestMatchers("/index").permitAll()
-                .requestMatchers("/usuarios").hasRole("ADMIN")
+                .requestMatchers("/registro/**").permitAll() //todo el mundo tiene acceso al los endpoints de registro + algo
+                .requestMatchers("/index").permitAll() //todos los users tiene acceso al indice
+                .requestMatchers("/usuarios").hasRole("ADMIN") //solo los admin pueden ver los usuarios
                 //.requestMatchers("/users").hasRole("USER")
                 .and()
                 .formLogin(
@@ -48,6 +48,7 @@ public class SpringSecurity {
                 );
         return http.build();
     }
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
