@@ -67,5 +67,9 @@ public class AuthController {
         return "users";
     }
 
-
+    //para el login
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 }
