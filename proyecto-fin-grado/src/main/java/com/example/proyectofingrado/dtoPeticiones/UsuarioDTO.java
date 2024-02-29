@@ -1,4 +1,4 @@
-package com.example.proyectofingrado.dto;
+package com.example.proyectofingrado.dtoPeticiones;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

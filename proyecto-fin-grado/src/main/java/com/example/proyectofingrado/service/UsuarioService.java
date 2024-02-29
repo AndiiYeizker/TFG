@@ -1,8 +1,7 @@
 package com.example.proyectofingrado.service;
 
-import com.example.proyectofingrado.dto.UsuarioDTO;
+import com.example.proyectofingrado.dtoPeticiones.UsuarioDTO;
 import com.example.proyectofingrado.entity.User;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

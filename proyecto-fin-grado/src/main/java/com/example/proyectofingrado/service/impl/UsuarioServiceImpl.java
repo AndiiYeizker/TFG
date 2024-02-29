@@ -1,6 +1,6 @@
 package com.example.proyectofingrado.service.impl;
 
-import com.example.proyectofingrado.dto.UsuarioDTO;
+import com.example.proyectofingrado.dtoPeticiones.UsuarioDTO;
 import com.example.proyectofingrado.entity.Role;
 import com.example.proyectofingrado.entity.User;
 import com.example.proyectofingrado.repository.RoleRepository;
