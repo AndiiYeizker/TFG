@@ -32,13 +32,13 @@ public class SpringSecurity {
                 .requestMatchers("/registro/**").permitAll() //todo el mundo tiene acceso al los endpoints de registro + algo
                 .requestMatchers("/index").permitAll() //todos los users tiene acceso al indice
                 .requestMatchers("/users").hasRole("ADMIN") //solo los admin pueden ver los usuarios
-                //.requestMatchers("/users").hasRole("USER")
+                .requestMatchers("/menu").hasRole("ADMIN")
                 .and()
                 .formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/users")
+                                .defaultSuccessUrl("/menu")
                                 .permitAll()
                 ).logout(
                         logout -> logout
