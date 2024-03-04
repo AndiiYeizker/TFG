@@ -37,5 +37,9 @@ public class Paciente {
     @Column(nullable = false)
     private double altura;
 
+    @Column(nullable = false)
+    private String sexo;
 
+    @Column(nullable = false)
+    private t_pais t_pais;
 }

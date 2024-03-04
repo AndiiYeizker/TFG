@@ -1,5 +1,6 @@
 package com.example.proyectofingrado.dtoPeticiones;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class PacienteDTO {
     private String apellidos;
 
     @NotNull(message = "La fecha de nacimiento no puede estar vacía")
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
 
     @NotNull(message = "La edad no puede estar vacía")
     @Positive(message = "La edad debe ser un número positivo")
@@ -38,4 +39,11 @@ public class PacienteDTO {
     @NotNull(message = "La altura no puede estar vacía")
     @Positive(message = "La altura debe ser un número positivo")
     private double altura;
+
+    @NotNull(message = "El sexo no puede estar vacio")
+    @Column(nullable = false)
+    private String sexo;
+
+    @NotNull(message = "El pais no puede estar vacio")
+    private String pais;
 }
