@@ -59,7 +59,7 @@ public class AuthController {
         return "redirect:/registro?success";
     }
 
-    // para los usuarios
+    // para lista de usuarios
     @GetMapping("/users")
     public String users(Model model){
         List<UsuarioDTO> users = usuarioService.findAllUsers();
@@ -67,7 +67,7 @@ public class AuthController {
         return "users";
     }
 
-    //para el login
+
     @GetMapping("/login")
     public String login(){
         return "login";

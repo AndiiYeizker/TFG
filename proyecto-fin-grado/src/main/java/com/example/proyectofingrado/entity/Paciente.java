@@ -37,9 +37,13 @@ public class Paciente {
     @Column(nullable = false)
     private double altura;
 
+
     @Column(nullable = false)
     private String sexo;
 
-    @Column(nullable = false)
+    @ManyToOne
     private t_pais t_pais;
+
+    public Paciente(String nombre, String apellidos, int edad, double peso, double altura, String sexo) {
+    }
 }

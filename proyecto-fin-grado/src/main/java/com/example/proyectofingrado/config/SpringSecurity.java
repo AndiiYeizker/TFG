@@ -27,24 +27,22 @@ public class SpringSecurity {
     // filtro de seguridad
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/registro/**").permitAll() //todo el mundo tiene acceso al los endpoints de registro + algo
-                .requestMatchers("/index").permitAll() //todos los users tiene acceso al indice
-                .requestMatchers("/users").hasRole("ADMIN") //solo los admin pueden ver los usuarios
-                .requestMatchers("/menu").hasRole("ADMIN")
+        http.authorizeHttpRequests()//comienza autorizacion para solicitudes hhtp
+                .requestMatchers("/registro/**").permitAll() //todo el mundo tiene acceso a los endpoints de registro + algo
+                .requestMatchers("/index").permitAll() //todos los usuarios tienen acceso al índice
+                .requestMatchers("/users").hasRole("ADMIN") //solo los administradores pueden ver los usuarios
+                .requestMatchers("/menu").permitAll()
                 .and()
-                .formLogin(
+                .formLogin( //autenticacion del formulario
                         form -> form
-                                .loginPage("/login")
-                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/menu")
+                                .loginPage("/login") //pagina de login
+                                .loginProcessingUrl("/login") //pagina que se muestra al procesar el login
+                                .defaultSuccessUrl("/menu") //pagina al hacer un buen login
                                 .permitAll()
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
-
                 );
         return http.build();
     }

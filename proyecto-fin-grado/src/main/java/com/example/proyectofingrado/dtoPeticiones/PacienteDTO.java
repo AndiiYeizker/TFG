@@ -46,4 +46,7 @@ public class PacienteDTO {
 
     @NotNull(message = "El pais no puede estar vacio")
     private String pais;
+
+    public PacienteDTO(String nombre, String apellidos, int edad, double peso, double altura, String sexo) {
+    }
 }

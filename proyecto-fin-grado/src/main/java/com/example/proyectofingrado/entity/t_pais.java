@@ -1,13 +1,12 @@
 package com.example.proyectofingrado.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,6 +14,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "t_pais")
 public class t_pais {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "BIGINT")
+    private Long id;
 
     @Column(nullable = false)
     private String nombrePais;
