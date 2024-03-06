@@ -12,16 +12,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "t_pais")
-public class t_pais {
+@Table(name = "medico")
+public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @Column(nullable = false)
-    private String nombrePais;
-    @Column(nullable = false)
-    private int poblacion;
-    @Column(nullable = false)
-    private String estado;
 }

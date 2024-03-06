@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class PacienteController {
     @Autowired
  private PacienteService pacienteService;
 
-//Lista de todos los pacientes
+//Devuelve Lista de todos los pacientes
     @GetMapping("/pacientes")
     public String listaPacientes(Model model){
         List<PacienteDTO> pacienteDTOList = pacienteService.obtenerPacientes();
@@ -23,12 +25,19 @@ public class PacienteController {
         return "pacientes";
     }
 
-
+    //pagina web de crear pacientes
     @GetMapping("/pacientes/crear")
     public String crearPaciente(Model model){
-        //objeto modelo de paciente para recoger sus datos
         PacienteDTO pacienteDTO = new PacienteDTO();
         model.addAttribute("paciente",pacienteDTO);
         return "crear_paciente";
+    }
+
+    //Guarda un paciente
+    @PostMapping("/pacientes")
+    public String guardarPaciente(@ModelAttribute("paciente") PacienteDTO pacienteDTO){ //model attribute es el th:object del html
+        pacienteService.guardarPaciente(pacienteDTO);
+        //pagina a la que se nos redirige al crearlo (cambiarla por pagina de "mi info completada"
+        return "redirect:/pacientes";
     }
 }

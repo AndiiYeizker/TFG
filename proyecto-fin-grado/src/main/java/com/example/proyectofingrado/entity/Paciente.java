@@ -15,34 +15,26 @@ import java.util.Date;
 @Entity
 @Table(name = "paciente")
 public class Paciente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-
-    @Column(nullable = false)
+    private Long id;
+    @Column(nullable = true)
     private String nombre;
-
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String apellidos;
-
-    @Column(nullable = false)
-    private Date fechaNacimiento;
-
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int edad;
 
-    @Column(nullable = false)
+    @Column(name = "fechaNacimiento")
+    @Temporal(TemporalType.DATE)
+    private Date fechaNacimiento;
+    @Column(nullable = true)
     private double peso;
-
-    @Column(nullable = false)
+    @Column(nullable = true)
     private double altura;
-
-
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String sexo;
-
-    @ManyToOne
-    private t_pais t_pais;
 
     public Paciente(String nombre, String apellidos, int edad, double peso, double altura, String sexo) {
     }
