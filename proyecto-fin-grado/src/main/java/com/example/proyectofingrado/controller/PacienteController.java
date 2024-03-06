@@ -15,7 +15,7 @@ public class PacienteController {
     @Autowired
  private PacienteService pacienteService;
 
-//Lista de todos los estudiantes
+//Lista de todos los pacientes
     @GetMapping("/pacientes")
     public String listaPacientes(Model model){
         List<PacienteDTO> pacienteDTOList = pacienteService.obtenerPacientes();
@@ -23,4 +23,12 @@ public class PacienteController {
         return"pacientes";
     }
 
+
+    @GetMapping("/pacientes/crear")
+    public String crearPaciente(Model model){
+        //objeto modelo de paciente para recoger sus datos
+        PacienteDTO pacienteDTO = new PacienteDTO();
+        model.addAttribute("paciente",pacienteDTO);
+        return"crear_paciente";
+    }
 }

@@ -31,9 +31,9 @@ public class PacienteServiceImpl implements PacienteService {
         paciente.setPeso(pacienteDTO.getPeso());
         paciente.setAltura(pacienteDTO.getAltura());
         paciente.setSexo(pacienteDTO.getSexo());
-        t_pais pais = new t_pais();
-        pais.setNombrePais(pacienteDTO.getPais());
-        paciente.setT_pais(pais);
+      //  t_pais pais = new t_pais();
+      //  pais.setNombrePais(pacienteDTO.getPais());
+      //  paciente.setT_pais(pais);
 
        pacienteRepository.save(paciente);
     }
