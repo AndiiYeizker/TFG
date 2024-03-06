@@ -11,11 +11,13 @@ import com.example.proyectofingrado.repository.PacienteRepository;
 import com.example.proyectofingrado.repository.UserRepository;
 import com.example.proyectofingrado.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class PacienteServiceImpl implements PacienteService {
 
     @Autowired

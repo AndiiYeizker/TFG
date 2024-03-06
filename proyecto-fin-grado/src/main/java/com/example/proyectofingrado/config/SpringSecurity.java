@@ -25,6 +25,7 @@ public class SpringSecurity {
     }
 
     // filtro de seguridad
+    //http://localhost:8080/register?continue
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()//comienza autorizacion para solicitudes hhtp
@@ -32,6 +33,7 @@ public class SpringSecurity {
                 .requestMatchers("/index").permitAll() //todos los usuarios tienen acceso al índice
                 .requestMatchers("/users").hasRole("ADMIN") //solo los administradores pueden ver los usuarios
                 .requestMatchers("/menu").permitAll()
+                .requestMatchers("/pacientes/**").permitAll()
                 .and()
                 .formLogin( //autenticacion del formulario
                         form -> form

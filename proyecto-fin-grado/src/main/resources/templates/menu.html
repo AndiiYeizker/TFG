@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -69,7 +72,7 @@
             <div class="menu-text">Calendario</div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6">
-            <a href="submenu3.html" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
+            <a th:href="@{/pacientes/crear}" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
                 <img src="imagen3.jpg" alt="Imagen 3">
             </a>
             <div class="menu-text">Mis datos </div>
@@ -77,8 +80,9 @@
     </div>
     <div class="row justify-content-center">
         <!-- Segunda fila de botones -->
+
         <div class="col-lg-2 col-md-4 col-sm-6">
-            <a href="submenu4.html" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
+            <a th:href="@{/pacientes/crear}" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
                 <img src="imagen4.jpg" alt="Imagen 4">
             </a>
             <div class="menu-text">Añadir enfermedad</div>

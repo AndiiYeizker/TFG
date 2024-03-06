@@ -20,7 +20,7 @@ public class PacienteController {
     public String listaPacientes(Model model){
         List<PacienteDTO> pacienteDTOList = pacienteService.obtenerPacientes();
         model.addAttribute("pacientes",pacienteDTOList);
-        return"pacientes";
+        return "pacientes";
     }
 
 
@@ -29,6 +29,6 @@ public class PacienteController {
         //objeto modelo de paciente para recoger sus datos
         PacienteDTO pacienteDTO = new PacienteDTO();
         model.addAttribute("paciente",pacienteDTO);
-        return"crear_paciente";
+        return "crear_paciente";
     }
 }
