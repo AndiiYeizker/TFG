@@ -1,6 +1,8 @@
 package com.example.proyectofingrado.dtoPeticiones;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -25,7 +27,8 @@ public class PacienteDTO {
     private String apellidos;
 
   //  @NotNull(message = "La fecha de nacimiento no puede estar vacía")
-    private Date fechaNacimiento;
+  //@Temporal(TemporalType.DATE)
+    //private Date fechaNacimiento;
 
  //   @NotNull(message = "La edad no puede estar vacía")
     @Positive(message = "La edad debe ser un número positivo")

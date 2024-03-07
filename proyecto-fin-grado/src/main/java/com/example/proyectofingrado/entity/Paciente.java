@@ -29,9 +29,9 @@ public class Paciente {
     @Column(nullable = true)
     private int edad;
 
-    @Column(name = "fechaNacimiento")
-    @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento;
+    //@Column(name = "fechaNacimiento")
+    //@Temporal(TemporalType.DATE)
+    //private Date fechaNacimiento;
     @Column(nullable = true)
     private double peso;
     @Column(nullable = true)

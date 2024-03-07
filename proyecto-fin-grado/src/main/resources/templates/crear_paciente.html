@@ -57,13 +57,14 @@
               <input class="form-control" id="edad" name="edad" placeholder="Edad" type="number" th:field="*{edad}" />
               <p th:if="${#fields.hasErrors('edad')}" class="text-danger" th:errors="*{edad}"></p>
             </div>
-
+            <!-- Noo poner fechas hasta que haga el transformer y mapper como dios manda
             <div class="form-group mb-3">
               <label class="form-label">Fecha de Nacimiento</label>
               <input class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento" type="date" th:field="*{fechaNacimiento}" />
               <p th:if="${#fields.hasErrors('fechaNacimiento')}" class="text-danger" th:errors="*{fechaNacimiento}"></p>
             </div>
           </div>
+          -->
 
           <div class="col">
             <div class="form-group mb-3">
