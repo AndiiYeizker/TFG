@@ -17,7 +17,7 @@ public class PacienteController {
     @Autowired
  private PacienteService pacienteService;
 
-//Devuelve Lista de todos los pacientes
+//Pagia visual que contiene Lista de todos los pacientes
     @GetMapping("/pacientes")
     public String listaPacientes(Model model){
         List<PacienteDTO> pacienteDTOList = pacienteService.obtenerPacientes();

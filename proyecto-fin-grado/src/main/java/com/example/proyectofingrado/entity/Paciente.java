@@ -38,14 +38,8 @@ public class Paciente {
     private double altura;
     @Column(nullable = true)
     private String sexo;
+    private String pais;
 
-    public Paciente(String nombre, String apellidos, int edad, double peso, double altura, String sexo) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.edad = edad;
-        this.peso = peso;
-        this.altura = altura;
-        this.sexo = sexo;
-    }
+
 
 }
