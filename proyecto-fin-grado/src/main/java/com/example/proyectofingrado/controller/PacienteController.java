@@ -67,4 +67,10 @@ public class PacienteController {
         return "redirect:/pacientes";
     }
 
+    //borrar pacientes (boton borrar)
+    @GetMapping("pacientes/{idPaciente}/borrar")
+    public String borrarPaciente(@PathVariable("idPaciente") Long idPaciente){
+        pacienteService.borrarPaciente(idPaciente);
+        return "redirect:/pacientes";
+    }
 }

@@ -62,5 +62,10 @@ public class PacienteServiceImpl implements PacienteService {
         pacienteRepository.save(PacienteMapper.maptoPaciente(pacienteDTO));
     }
 
+    @Override
+    public void borrarPaciente(Long idPaciente) {
+        pacienteRepository.deleteById(idPaciente);
+    }
+
 
 }

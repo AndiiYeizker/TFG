@@ -13,4 +13,6 @@ public interface PacienteService  {
     PacienteDTO getPacienteById(Long idPaciente);
 
     void actualizarPaciente(PacienteDTO pacienteDTO);
+
+    void borrarPaciente(Long idPaciente);
 }

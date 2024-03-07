@@ -56,6 +56,8 @@
                 <!-- De la lista que vemos, coger ese id de paciente y nos lo llevamos al endpoint de actualizar -->
                 <a class="btn btn-primary" th:href="@{/pacientes/{idPaciente}/actualizar(idPaciente=${paciente.id})}">
                     Actualizar Informacion</a>
+                <a class="btn btn-danger" th:href="@{/pacientes/{idPaciente}/borrar(idPaciente=${paciente.id})}">
+                    Borrar Paciente</a>
             </td>
         </tr>
         </tbody>
