@@ -9,4 +9,8 @@ import java.util.List;
 public interface PacienteService  {
     void guardarPaciente(PacienteDTO pacienteDTO);
     List<PacienteDTO> obtenerPacientes();
+
+    PacienteDTO getPacienteById(Long idPaciente);
+
+    void actualizarPaciente(PacienteDTO pacienteDTO);
 }

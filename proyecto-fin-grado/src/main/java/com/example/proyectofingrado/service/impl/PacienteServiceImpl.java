@@ -50,4 +50,17 @@ public class PacienteServiceImpl implements PacienteService {
         return pacienteDTOList;
     }
 
+    @Override
+    public PacienteDTO getPacienteById(Long idPaciente) {
+       Paciente paciente = pacienteRepository.findById(idPaciente).get();
+       PacienteDTO pacienteDTO = PacienteMapper.maptoPacienteDTO(paciente);
+       return pacienteDTO;
+    }
+
+    @Override
+    public void actualizarPaciente(PacienteDTO pacienteDTO) {
+        pacienteRepository.save(PacienteMapper.maptoPaciente(pacienteDTO));
+    }
+
+
 }
