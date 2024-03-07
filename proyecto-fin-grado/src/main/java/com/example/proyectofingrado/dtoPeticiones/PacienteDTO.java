@@ -22,7 +22,6 @@ public class PacienteDTO {
  //   @NotEmpty(message = "El nombre no puede estar vacío")
     private String nombre;
 
-  //  @NotEmpty(message = "Los apellidos no pueden estar vacíos")
     private String apellidos;
 
   //  @NotNull(message = "La fecha de nacimiento no puede estar vacía")
@@ -47,6 +46,13 @@ public class PacienteDTO {
   //  @NotNull(message = "El pais no puede estar vacio")
     private String pais;
 
-    public PacienteDTO(String nombre, String apellidos, int edad, double peso, double altura, String sexo) {
+    public PacienteDTO(String nombre, String apellidos,  int edad, double peso, double altura, String sexo) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.edad = edad;
+        this.peso = peso;
+        this.altura = altura;
+        this.sexo = sexo;
     }
+
 }

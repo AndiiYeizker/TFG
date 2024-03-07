@@ -14,7 +14,7 @@ public class PacienteMapper {
 
     public static Paciente maptoPaciente(PacienteDTO pacienteDTO){
 
-        Paciente paciente = new Paciente(pacienteDTO.getNombre(), pacienteDTO.getApellidos(),
+        Paciente paciente = new Paciente(pacienteDTO.getNombre(),pacienteDTO.getApellidos(),
                 pacienteDTO.getEdad(), pacienteDTO.getPeso(),pacienteDTO.getAltura(),pacienteDTO.getSexo());
 
         return paciente;

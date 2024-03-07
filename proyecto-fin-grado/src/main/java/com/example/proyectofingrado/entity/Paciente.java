@@ -19,10 +19,13 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = true)
     private String nombre;
+
     @Column(nullable = true)
     private String apellidos;
+
     @Column(nullable = true)
     private int edad;
 
@@ -37,5 +40,12 @@ public class Paciente {
     private String sexo;
 
     public Paciente(String nombre, String apellidos, int edad, double peso, double altura, String sexo) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.edad = edad;
+        this.peso = peso;
+        this.altura = altura;
+        this.sexo = sexo;
     }
+
 }

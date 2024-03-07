@@ -38,3 +38,8 @@ body {
   background-color: #5cb85c; /* Verde de enfoque */
   border-color: #5cb85c; /* Borde de enfoque */
 }
+
+.table {
+    border: 2px solid #8B4513; /* Marrón */
+    background-color: #D2B48C; /* Marrón claro */
+}

@@ -28,7 +28,7 @@ public class SpringSecurity {
     //http://localhost:8080/register?continue
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests()//comienza autorizacion para solicitudes hhtp
+        http.authorizeRequests()//comienza autorizacion para solicitudes hhtp
                 .requestMatchers("/registro/**").permitAll() //todo el mundo tiene acceso a los endpoints de registro + algo
                 .requestMatchers("/index").permitAll() //todos los usuarios tienen acceso al índice
                 .requestMatchers("/users").hasRole("ADMIN") //solo los administradores pueden ver los usuarios
