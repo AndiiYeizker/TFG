@@ -73,4 +73,13 @@ public class PacienteController {
         pacienteService.borrarPaciente(idPaciente);
         return "redirect:/pacientes";
     }
+
+    ///pagina de ver paciente (para boton ver paciente)
+    @GetMapping("/pacientes/{idPaciente}/ver")
+    public String verPaciente(@PathVariable("idPaciente") Long idPaciente,
+                              Model model){
+        PacienteDTO pacienteDTO = pacienteService.getPacienteById(idPaciente);
+        model.addAttribute("paciente", pacienteDTO);
+        return "ver_paciente";
+    }
 }

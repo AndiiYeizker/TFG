@@ -49,11 +49,14 @@
         </tr>
         </thead>
         <tbody>
+        <!-- objeto del que  puedo ir cogiendo variables (paciente. .... en este html -->
         <tr th:each="paciente : ${pacientes}">
             <td th:text="${paciente.nombre}"></td>
             <td th:text="${paciente.apellidos}"></td>
             <td>
                 <!-- De la lista que vemos, coger ese id de paciente y nos lo llevamos al endpoint de actualizar -->
+                <a class="btn btn-success" th:href="@{/pacientes/{idPaciente}/ver(idPaciente=${paciente.id})}">
+                    Ver Paciente</a>
                 <a class="btn btn-primary" th:href="@{/pacientes/{idPaciente}/actualizar(idPaciente=${paciente.id})}">
                     Actualizar Informacion</a>
                 <a class="btn btn-danger" th:href="@{/pacientes/{idPaciente}/borrar(idPaciente=${paciente.id})}">
