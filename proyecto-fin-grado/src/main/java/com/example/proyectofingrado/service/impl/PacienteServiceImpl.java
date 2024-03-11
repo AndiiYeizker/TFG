@@ -24,19 +24,6 @@ public class PacienteServiceImpl implements PacienteService {
     private PacienteRepository pacienteRepository;
     @Override
     public void guardarPaciente(PacienteDTO pacienteDTO) {
-       /** Paciente paciente = new Paciente();
-
-        paciente.setNombre(pacienteDTO.getNombre());
-        paciente.setApellidos(pacienteDTO.getApellidos());
-        paciente.setEdad(pacienteDTO.getEdad());
-       // paciente.setFechaNacimiento(pacienteDTO.getFechaNacimiento());
-        paciente.setPeso(pacienteDTO.getPeso());
-        paciente.setAltura(pacienteDTO.getAltura());
-        paciente.setSexo(pacienteDTO.getSexo());
-      //  t_pais pais = new t_pais();
-      //  pais.setNombrePais(pacienteDTO.getPais());
-      //  paciente.setT_pais(pais);
-**/
        Paciente paciente = PacienteMapper.maptoPaciente(pacienteDTO);
        pacienteRepository.save(paciente);
     }

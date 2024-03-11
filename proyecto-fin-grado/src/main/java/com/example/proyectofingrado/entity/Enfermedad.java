@@ -18,11 +18,9 @@ public class Enfermedad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //falta etiqueta de inmutable
-    private Long codigo;
+    private Long nombre;
 
-    private String nombre;
-
-    /**Medidas*/
+    /** INFORMACION DE LA ENFERMEDAD para el paciente*/
     //si hubiera tiempo estaría guay que fuera una lista de tipos
     private String tipoContagio;
     private String recomendacion;
@@ -46,7 +44,15 @@ public class Enfermedad {
     private double tasaTransmision;
     private double tasaExposicion;
 
-
+/** Constructor visual de la info de enfermedades*/
+public Enfermedad(Long nombre, String tipoContagio, String recomendacion, String sintomas, String vacunasDisponibles, String testDeteccion) {
+    this.nombre = nombre;
+    this.tipoContagio = tipoContagio;
+    this.recomendacion = recomendacion;
+    this.sintomas = sintomas;
+    this.vacunasDisponibles = vacunasDisponibles;
+    this.testDeteccion = testDeteccion;
+}
 
 
 }

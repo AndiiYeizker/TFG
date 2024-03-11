@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -40,6 +41,20 @@ public class Paciente {
     private String sexo;
     private String pais;
 
+    /**Listas*/
+    @OneToMany
+    @JoinColumn(name = "idPacienteList")
+    private List<ExpedienteClinico> expedienteClinicoList;
 
+    public Paciente(Long id, String nombre, String apellidos, int edad, double peso, double altura, String sexo, String pais) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.edad = edad;
+        this.peso = peso;
+        this.altura = altura;
+        this.sexo = sexo;
+        this.pais = pais;
+    }
 
 }
