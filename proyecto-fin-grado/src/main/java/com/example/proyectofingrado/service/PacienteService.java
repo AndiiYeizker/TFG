@@ -10,9 +10,9 @@ public interface PacienteService  {
     void guardarPaciente(PacienteDTO pacienteDTO);
     List<PacienteDTO> obtenerPacientes();
 
-    PacienteDTO getPacienteById(Long idPaciente);
+    PacienteDTO getPacienteById(int idPaciente);
 
     void actualizarPaciente(PacienteDTO pacienteDTO);
 
-    void borrarPaciente(Long idPaciente);
+    void borrarPaciente(int idPaciente);
 }

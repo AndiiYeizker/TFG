@@ -11,9 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class EnfermedadDTO {
 
-    private Long nombre;
+    private String nombre;
     private String tipoContagio;
-    private String recomendacion;
+    private String recomendacion; //NO SE VE EN LA WEB
     private String sintomas;
     private String vacunasDisponibles;
     private String testDeteccion;

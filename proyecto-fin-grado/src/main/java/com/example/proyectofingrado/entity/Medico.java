@@ -16,6 +16,6 @@ import java.util.Date;
 public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigo;
+    private int codigo;
 
 }

@@ -17,9 +17,11 @@ public class ExpedienteClinicoController {
 @Autowired
     ExpedienteClinicoService expedienteClinicoService;
 
+//cambiar idPaciente forzado por el id de sesion de login asociado
+
     @GetMapping("/pacientes/{idPaciente}/expedientes")
-    public String listarExpedientesClinicos(@PathVariable Long idPaciente, Model model) {
-        List<ExpedienteClinicoDTO> expedientes = expedienteClinicoService.obtenerExpedienteClinicosPorPaciente(idPaciente);
+    public String listarExpedientesClinicos(@PathVariable int idPaciente, Model model) {
+        List<ExpedienteClinicoDTO> expedientes = expedienteClinicoService.obtenerExpedienteClinicosPorPaciente(1L);
         model.addAttribute("expedientes", expedientes);
 
         return "pacientes_expedientes";

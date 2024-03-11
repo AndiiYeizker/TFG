@@ -16,38 +16,38 @@ public class EnfermedadServiceImpl implements EnfermedadService {
 
     @Autowired
     EnfermedadRepository enfermedadRepository;
-    @Autowired
-    EnfermedadMapper enfermedadMapper;
+
 
     @Override
-    public void guardarEnfermedad(EnfermedadDTO EnfermedadDTO) {
-        Enfermedad Enfermedad = enfermedadMapper.toEnfermedad(EnfermedadDTO);
-        enfermedadRepository.save(Enfermedad);
+    public void guardarEnfermedad(EnfermedadDTO enfermedadDTO) {
+        Enfermedad enfermedad = EnfermedadMapper.toEnfermedad(enfermedadDTO);
+        enfermedadRepository.save(enfermedad);
     }
 
     @Override
     public List<EnfermedadDTO> obtenerEnfermedads() {
-        List<Enfermedad> EnfermedadList = enfermedadRepository.findAll();
-        List<EnfermedadDTO> EnfermedadDTOList = EnfermedadList.stream().map((enfermedad) -> enfermedadMapper.toEnfermedadDTO(enfermedad))
+        List<Enfermedad> enfermedadList = enfermedadRepository.findAll();
+        List<EnfermedadDTO> enfermedadDTOList = enfermedadList.stream().map((enfermedad) -> EnfermedadMapper.toEnfermedadDTO(enfermedad))
                 .collect(Collectors.toList());
 
-        return EnfermedadDTOList;
+        return enfermedadDTOList;
     }
 
     @Override
     public EnfermedadDTO getEnfermedadById(Long idEnfermedad) {
-        Enfermedad Enfermedad = enfermedadRepository.findById(idEnfermedad).get();
-        EnfermedadDTO EnfermedadDTO = enfermedadMapper.toEnfermedadDTO(Enfermedad);
+        Enfermedad enfermedad = enfermedadRepository.findById(idEnfermedad).get();
+        EnfermedadDTO EnfermedadDTO = EnfermedadMapper.toEnfermedadDTO(enfermedad);
         return EnfermedadDTO;
     }
 
     @Override
-    public void actualizarEnfermedad(EnfermedadDTO EnfermedadDTO) {
-        enfermedadRepository.save(EnfermedadMapper.toEnfermedad(EnfermedadDTO));
+    public void actualizarEnfermedad(EnfermedadDTO enfermedadDTO) {
+        enfermedadRepository.save(EnfermedadMapper.toEnfermedad(enfermedadDTO));
     }
 
     @Override
     public void borrarEnfermedad(Long idEnfermedad) {
         enfermedadRepository.deleteById(idEnfermedad);
     }
+
 }

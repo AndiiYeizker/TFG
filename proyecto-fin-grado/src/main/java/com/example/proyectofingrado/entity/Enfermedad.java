@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Getter
 @Setter
@@ -16,9 +17,11 @@ import lombok.Setter;
 public class Enfermedad {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //falta etiqueta de inmutable
-    private Long nombre;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator") //falta etiqueta de inmutable
+    private String codigo;
+
+    private String nombre;
 
     /** INFORMACION DE LA ENFERMEDAD para el paciente*/
     //si hubiera tiempo estaría guay que fuera una lista de tipos
@@ -45,7 +48,7 @@ public class Enfermedad {
     private double tasaExposicion;
 
 /** Constructor visual de la info de enfermedades*/
-public Enfermedad(Long nombre, String tipoContagio, String recomendacion, String sintomas, String vacunasDisponibles, String testDeteccion) {
+public Enfermedad(String nombre, String tipoContagio, String recomendacion, String sintomas, String vacunasDisponibles, String testDeteccion) {
     this.nombre = nombre;
     this.tipoContagio = tipoContagio;
     this.recomendacion = recomendacion;

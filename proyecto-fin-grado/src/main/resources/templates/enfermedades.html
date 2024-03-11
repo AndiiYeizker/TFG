@@ -43,16 +43,17 @@
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
         <tr>
+            <th>Nombre</th>
             <th>Tipo de Contagio</th>
             <th>Recomendación</th>
             <th>Síntomas</th>
             <th>Vacunas Disponibles</th>
             <th>Test de Detección</th>
-            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="enfermedad : ${enfermedades}">
+            <td th:text="${enfermedad.nombre}"></td>
             <td th:text="${enfermedad.tipoContagio}"></td>
             <td th:text="${enfermedad.recomendacion}"></td>
             <td th:text="${enfermedad.sintomas}"></td>

@@ -19,7 +19,7 @@ public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(nullable = true)
     private String nombre;
@@ -46,7 +46,7 @@ public class Paciente {
     @JoinColumn(name = "idPacienteList")
     private List<ExpedienteClinico> expedienteClinicoList;
 
-    public Paciente(Long id, String nombre, String apellidos, int edad, double peso, double altura, String sexo, String pais) {
+    public Paciente(int id, String nombre, String apellidos, int edad, double peso, double altura, String sexo, String pais) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;

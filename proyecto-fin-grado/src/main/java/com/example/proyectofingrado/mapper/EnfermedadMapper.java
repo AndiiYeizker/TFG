@@ -16,7 +16,7 @@ public class EnfermedadMapper {
         return enfermedad;
     }
 
-    public EnfermedadDTO toEnfermedadDTO(Enfermedad enfermedad) {
+    public static EnfermedadDTO toEnfermedadDTO(Enfermedad enfermedad) {
         EnfermedadDTO enfermedadDTO = new EnfermedadDTO();
         enfermedadDTO.setNombre(enfermedad.getNombre());
         enfermedadDTO.setTipoContagio(enfermedad.getTipoContagio());

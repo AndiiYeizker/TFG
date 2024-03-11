@@ -19,7 +19,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class PacienteDTO {
 
-    private Long id;
+    private int id;
 
  //   @NotEmpty(message = "El nombre no puede estar vacío")
     private String nombre;

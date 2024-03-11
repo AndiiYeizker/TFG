@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioDTO {
-    private Long id;
+    private int id;
     @NotEmpty(message = "El nombre no puede estar vacío")
     private String firstName;
     @NotEmpty(message = "El apellido no puede estar vacío")

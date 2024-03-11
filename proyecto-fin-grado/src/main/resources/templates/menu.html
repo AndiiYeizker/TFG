@@ -60,13 +60,13 @@
     <div class="row justify-content-center">
         <!-- Primera fila de botones -->
         <div class="col-lg-2 col-md-4 col-sm-6">
-            <a href="@{/pacientes}" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
+            <a th:href="@{/pacientes}"  class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
                 <img src="imagen1.jpg" alt="Imagen 1">
             </a>
             <div class="menu-text">Visualización de pacientes</div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6">
-            <a href="submenu2.html" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
+            <a th:href="@{/calendar}" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
                 <img src="imagen2.jpg" alt="Imagen 2">
             </a>
             <div class="menu-text">Calendario</div>
@@ -75,7 +75,7 @@
             <a th:href="@{/pacientes/crear}" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
                 <img src="imagen3.jpg" alt="Imagen 3">
             </a>
-            <div class="menu-text">Mis datos </div>
+            <div class="menu-text">Crear paciente </div>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -90,13 +90,13 @@
             <div class="menu-text">Lista de pacientes</div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6">
-            <a href="submenu5.html" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
+            <a th:href="submenu5.html" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
                 <img src="imagen5.jpg" alt="Imagen 5">
             </a>
             <div class="menu-text">Añadir enfermedad</div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6">
-            <a href="submenu6.html" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
+            <a th:href="@{/pacientes/idPaciente/expedientes}" class="menu-button bg-white text-dark d-flex justify-content-center align-items-center">
                 <img src="imagen6.jpg" alt="Imagen 6">
             </a>
             <div class="menu-text">Visualizar gráficas actuales</div>

@@ -22,40 +22,39 @@ public class ExpendienteClinicoServiceImpl implements ExpedienteClinicoService{
     @Autowired
     PacienteRepository pacienteRepository;
 
-    @Autowired
-    ExpedienteClinicoMapper expedienteClinicoMapper;
+
 
     @Override
-    public void guardarExpedienteClinico(Long idPaciente, ExpedienteClinicoDTO expedienteClinicoDTO) {
+    public void guardarExpedienteClinico(int idPaciente, ExpedienteClinicoDTO expedienteClinicoDTO) {
         Paciente paciente = pacienteRepository.findById(idPaciente).orElseThrow(() -> new RuntimeException("Paciente no encontrado"));
         expedienteClinicoDTO.setIdPaciente(paciente);
-        ExpedienteClinico expedienteClinico = expedienteClinicoMapper.toExpedienteClinico(expedienteClinicoDTO);
+        ExpedienteClinico expedienteClinico = ExpedienteClinicoMapper.toExpedienteClinico(expedienteClinicoDTO);
         expedienteClinicoRepository.save(expedienteClinico);
     }
 
     @Override
-    public List<ExpedienteClinicoDTO> obtenerExpedienteClinicosPorPaciente(Long idPaciente) {
+    public List<ExpedienteClinicoDTO> obtenerExpedienteClinicosPorPaciente(int idPaciente) {
         Paciente paciente = pacienteRepository.findById(idPaciente).orElseThrow(() -> new RuntimeException("Paciente no encontrado"));
         List<ExpedienteClinico> expedienteClinicoList = expedienteClinicoRepository.findByPaciente(paciente);
-        List<ExpedienteClinicoDTO> expedienteClinicoDTOList = expedienteClinicoList.stream().map((expedienteClinico) -> expedienteClinicoMapper.toExpedienteClinicoDTO(expedienteClinico))
+        List<ExpedienteClinicoDTO> expedienteClinicoDTOList = expedienteClinicoList.stream().map((expedienteClinico) -> ExpedienteClinicoMapper.toExpedienteClinicoDTO(expedienteClinico))
                 .collect(Collectors.toList());
         return expedienteClinicoDTOList;
     }
 
     @Override
-    public ExpedienteClinicoDTO getExpedienteClinicoById(Long idExpedienteClinico) {
+    public ExpedienteClinicoDTO getExpedienteClinicoById(int idExpedienteClinico) {
         ExpedienteClinico expedienteClinico = expedienteClinicoRepository.findById(idExpedienteClinico).orElseThrow(() -> new RuntimeException("Expediente clínico no encontrado"));
-        ExpedienteClinicoDTO expedienteClinicoDTO = expedienteClinicoMapper.toExpedienteClinicoDTO(expedienteClinico);
+        ExpedienteClinicoDTO expedienteClinicoDTO = ExpedienteClinicoMapper.toExpedienteClinicoDTO(expedienteClinico);
         return expedienteClinicoDTO;
     }
 
     @Override
     public void actualizarExpedienteClinico(ExpedienteClinicoDTO expedienteClinicoDTO) {
-        expedienteClinicoRepository.save(expedienteClinicoMapper.toExpedienteClinico(expedienteClinicoDTO));
+        expedienteClinicoRepository.save(ExpedienteClinicoMapper.toExpedienteClinico(expedienteClinicoDTO));
     }
 
     @Override
-    public void borrarExpedienteClinico(Long idExpedienteClinico) {
+    public void borrarExpedienteClinico(int idExpedienteClinico) {
         expedienteClinicoRepository.deleteById(idExpedienteClinico);
     }
 }

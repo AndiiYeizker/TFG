@@ -1,19 +1,13 @@
 package com.example.proyectofingrado.service.impl;
 
 import com.example.proyectofingrado.dtoPeticiones.PacienteDTO;
-import com.example.proyectofingrado.dtoPeticiones.UsuarioDTO;
 import com.example.proyectofingrado.entity.Paciente;
-import com.example.proyectofingrado.entity.Role;
-import com.example.proyectofingrado.entity.User;
-import com.example.proyectofingrado.entity.t_pais;
 import com.example.proyectofingrado.mapper.PacienteMapper;
 import com.example.proyectofingrado.repository.PacienteRepository;
-import com.example.proyectofingrado.repository.UserRepository;
 import com.example.proyectofingrado.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,8 +32,8 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public PacienteDTO getPacienteById(Long idPaciente) {
-       Paciente paciente = pacienteRepository.findById(idPaciente).get();
+    public PacienteDTO getPacienteById(int idPaciente) {
+       Paciente paciente = pacienteRepository.findById(idPaciente);
        PacienteDTO pacienteDTO = PacienteMapper.maptoPacienteDTO(paciente);
        return pacienteDTO;
     }
@@ -50,7 +44,7 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public void borrarPaciente(Long idPaciente) {
+    public void borrarPaciente(int idPaciente) {
         pacienteRepository.deleteById(idPaciente);
     }
 
