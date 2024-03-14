@@ -1,8 +1,7 @@
 package com.example.proyectofingrado.dtoPeticiones;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import com.example.proyectofingrado.entity.ExpedienteClinico;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -12,6 +11,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -48,6 +48,9 @@ public class PacienteDTO {
 
   //  @NotNull(message = "El pais no puede estar vacio")
     private String pais;
+
+    @OneToMany(mappedBy = "idPacienteList", fetch = FetchType.LAZY)
+    private List<ExpedienteClinico> expedienteClinicoList;
 
 
 }

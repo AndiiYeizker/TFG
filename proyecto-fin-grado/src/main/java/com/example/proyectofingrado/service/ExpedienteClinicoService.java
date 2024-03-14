@@ -6,13 +6,15 @@ import java.util.List;
 
 public interface ExpedienteClinicoService {
 
-    void guardarExpedienteClinico(Long idPaciente, ExpedienteClinicoDTO expedienteClinicoDTO);
 
-    List<ExpedienteClinicoDTO> obtenerExpedienteClinicosPorPaciente(Long idPaciente);
+    void guardarExpedienteClinico(int idPaciente, ExpedienteClinicoDTO expedienteClinicoDTO);
 
-    ExpedienteClinicoDTO getExpedienteClinicoById(Long idExpedienteClinico);
+    List<ExpedienteClinicoDTO> obtenerExpedienteClinicosPorPaciente(int idPaciente);
+
+    ExpedienteClinicoDTO getExpedienteClinicoById(int idExpedienteClinico);
 
     void actualizarExpedienteClinico(ExpedienteClinicoDTO expedienteClinicoDTO);
 
-    void borrarExpedienteClinico(Long idExpedienteClinico);
+
+    void borrarExpedienteClinico(int idExpedienteClinico);
 }

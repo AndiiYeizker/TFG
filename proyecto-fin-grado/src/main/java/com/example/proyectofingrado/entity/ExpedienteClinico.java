@@ -1,5 +1,8 @@
 package com.example.proyectofingrado.entity;
 
+import com.example.proyectofingrado.mapper.ExpedienteClinicoMapper;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,13 +17,17 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "expedienteClinico")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        scope = ExpedienteClinicoMapper.class)
 public class ExpedienteClinico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idPacienteList")
     private Paciente paciente;
 

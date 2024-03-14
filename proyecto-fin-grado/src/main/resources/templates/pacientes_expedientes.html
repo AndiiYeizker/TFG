@@ -1,92 +1,55 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Aplicacion Sanitaria</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous">
+    <title>Lista de Pacientes</title>
 </head>
-<link rel="stylesheet" type="text/css" href="../static/estilos.css">
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <!-- Botón de menú a la izquierda -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<h1>Lista de Pacientes</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Expedientes Clínicos</th>
+    </tr>
+    </thead>
+    <tbody id="tablaPacientes">
+    <!-- Los pacientes se cargarán aquí mediante JavaScript -->
+    </tbody>
+</table>
 
-        <!-- Items de la barra de navegación -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/menu}">Menu</a>
-                </li>
-            </ul>
-        </div>
+<script>
+        // Función para cargar la lista de pacientes al cargar la página
+        window.onload = function() {
+            fetch('/api/pacientes')
+                .then(response => response.json())
+                .then(data => {
+                    const tablaPacientes = document.getElementById('tablaPacientes');
+                    data.forEach(paciente => {
+                        const fila = `
+                            <tr>
+                                <td>${paciente.id}</td>
+                                <td>${paciente.nombre}</td>
+                                <td>${paciente.apellidos}</td>
+                                <td><button onclick="mostrarExpedientes(${paciente.id})">Ver Expedientes</button></td>
+                            </tr>
+                        `;
+                        tablaPacientes.innerHTML += fila;
+                    });
+                });
+        }
 
-        <!-- Botón de login al fondo a la derecha -->
-        <div class="d-flex justify-content-end">
-            <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
-        </div>
-    </div>
-</nav>
-
-<div class="container">
-    <div class="row col-md-10">
-        <h2>Listado de Pacientes</h2>
-    </div>
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark">
-        <tr>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- objeto del que  puedo ir cogiendo variables (paciente. .... en este html -->
-        <tr th:each="paciente : ${pacientes}">
-            <td th:text="${paciente.nombre}"></td>
-            <td th:text="${paciente.apellidos}"></td>
-            <td>
-                <!-- Botones para ver, actualizar y borrar paciente -->
-                <a class="btn btn-success" th:href="@{/pacientes/{idPaciente}/ver(idPaciente=${paciente.id})}">
-                    Ver Paciente</a>
-                <a class="btn btn-primary" th:href="@{/pacientes/{idPaciente}/actualizar(idPaciente=${paciente.id})}">
-                    Actualizar Informacion</a>
-                <a class="btn btn-danger" th:href="@{/pacientes/{idPaciente}/borrar(idPaciente=${paciente.id})}">
-                    Borrar Paciente</a>
-                <!-- Botón para desplegar lista de expedientes clínicos -->
-                <button type="button" class="btn btn-info" data-bs-toggle="collapse" th:data-target="'#expedientes' + ${paciente.id}">
-                    Ver Expedientes Clínicos
-                </button>
-                <!-- Tabla oculta de expedientes clínicos -->
-                <div th:id="'expedientes' + ${paciente.id}" class="collapse">
-                    <table class="table table-bordered table-hover">
-                        <thead class="table-dark">
-                        <tr>
-                            <th>Enfermedad</th>
-                            <th>Fecha Inicio de los Sintomas</th>
-                            <!-- Agrega más columnas según las propiedades que desees mostrar de ExpedienteClinico -->
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <!-- Iteración sobre los expedientes clínicos del paciente -->
-                        <tr th:each="expediente : ${paciente.expedientesClinicos}">
-                            <td th:text="${expediente.enfermedad}"></td>
-                            <td th:text="${expediente.fechaInicioSintomas}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+        // Función para mostrar los expedientes clínicos de un paciente específico
+        function mostrarExpedientes(idPaciente) {
+            fetch(`/api/pacientes/${idPaciente}/expedientes`)
+                .then(response => response.json())
+                .then(data => {
+                    // Manejar los expedientes clínicos obtenidos, puedes mostrarlos en una ventana modal o en otra tabla debajo de la tabla de pacientes, por ejemplo.
+                    console.log(data);
+                });
+        }
+    </script>
 </body>
 </html>

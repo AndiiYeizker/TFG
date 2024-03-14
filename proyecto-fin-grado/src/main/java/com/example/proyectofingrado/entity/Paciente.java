@@ -1,5 +1,7 @@
 package com.example.proyectofingrado.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +17,10 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "paciente")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        scope = Paciente.class)
 public class Paciente {
 
     @Id
@@ -42,7 +48,7 @@ public class Paciente {
     private String pais;
 
     /**Listas*/
-    @OneToMany
+    @OneToMany( fetch = FetchType.LAZY)
     @JoinColumn(name = "idPacienteList")
     private List<ExpedienteClinico> expedienteClinicoList;
 

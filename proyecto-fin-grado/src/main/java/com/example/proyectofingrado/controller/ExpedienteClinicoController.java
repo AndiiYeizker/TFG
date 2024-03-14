@@ -21,7 +21,7 @@ public class ExpedienteClinicoController {
 
     @GetMapping("/pacientes/{idPaciente}/expedientes")
     public String listarExpedientesClinicos(@PathVariable int idPaciente, Model model) {
-        List<ExpedienteClinicoDTO> expedientes = expedienteClinicoService.obtenerExpedienteClinicosPorPaciente(1L);
+        List<ExpedienteClinicoDTO> expedientes = expedienteClinicoService.obtenerExpedienteClinicosPorPaciente(idPaciente);
         model.addAttribute("expedientes", expedientes);
 
         return "pacientes_expedientes";

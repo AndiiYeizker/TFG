@@ -6,10 +6,11 @@ import com.example.proyectofingrado.entity.Paciente;
 
 public class PacienteMapper {
 
+
     public static PacienteDTO maptoPacienteDTO(Paciente paciente){
         PacienteDTO pacienteDTO = new PacienteDTO(paciente.getId(), paciente.getNombre(), paciente.getApellidos(),
                                                     paciente.getEdad(),paciente.getPeso(),paciente.getAltura(),
-                                                    paciente.getSexo(), paciente.getPais());
+                                                    paciente.getSexo(), paciente.getPais(),paciente.getExpedienteClinicoList());
 
         return pacienteDTO;
     }
