@@ -19,6 +19,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class ExpedienteClinicoDTO {
 
+    private int id;
     private Paciente idPaciente;
     private Enfermedad enfermedad;
     private Date fechaInicioSintomas;

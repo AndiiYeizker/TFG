@@ -33,7 +33,7 @@ public class PacienteController {
     @Autowired
     ExpedienteClinicoService expedienteClinicoService;
     //Pagia visual que contiene Lista de todos los pacientes
-    /**
+    /** PACIENTES JSON
     @GetMapping("/pacientes")
     public ResponseEntity<List<PacienteDTO>> listaPacientes() {
         List<PacienteDTO> pacienteDTOList = pacienteService.obtenerPacientes();
@@ -46,24 +46,6 @@ public class PacienteController {
         List<PacienteDTO> pacienteDTOList = pacienteService.obtenerPacientes();
         model.addAttribute("pacientes", pacienteDTOList);
         return "pacientes";
-    }
-
-
-    @GetMapping("/pacientes-expedientes")
-    public void getPacientesExpedientes(HttpServletResponse response) throws IOException {
-        // Cargar el archivo HTML desde la carpeta resources
-        Resource resource = new ClassPathResource("templates/pacientes_expedientes.html");
-
-        // Leer el contenido del archivo HTML
-        InputStream inputStream = resource.getInputStream();
-        byte[] bytes = FileCopyUtils.copyToByteArray(inputStream);
-        String htmlContent = new String(bytes);
-
-        // Configurar el tipo de contenido de la respuesta
-        response.setContentType("text/html");
-
-        // Escribir el contenido del archivo HTML en la respuesta
-        response.getWriter().write(htmlContent);
     }
 
 

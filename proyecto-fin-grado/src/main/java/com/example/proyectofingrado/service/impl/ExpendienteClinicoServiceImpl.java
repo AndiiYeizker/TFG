@@ -1,8 +1,10 @@
 package com.example.proyectofingrado.service.impl;
 
 import com.example.proyectofingrado.dtoPeticiones.ExpedienteClinicoDTO;
+import com.example.proyectofingrado.dtoPeticiones.PacienteDTO;
 import com.example.proyectofingrado.entity.ExpedienteClinico;
 import com.example.proyectofingrado.entity.Paciente;
+import com.example.proyectofingrado.mapper.PacienteMapper;
 import com.example.proyectofingrado.repository.ExpedienteClinicoRepository;
 import com.example.proyectofingrado.repository.PacienteRepository;
 import com.example.proyectofingrado.service.ExpedienteClinicoService;
@@ -59,4 +61,15 @@ public class ExpendienteClinicoServiceImpl implements ExpedienteClinicoService{
     public void borrarExpedienteClinico(int idExpedienteClinico) {
         expedienteClinicoRepository.deleteById((long) idExpedienteClinico);
     }
+
+
+    @Override
+    public List<ExpedienteClinicoDTO> obtenerExpedientesClinicos() {
+        List<ExpedienteClinico> expedienteClinicoList = expedienteClinicoRepository.findAll();
+       List<ExpedienteClinicoDTO> expedienteClinicoDTOList = expedienteClinicoList.stream().map((expediente) ->
+               ExpedienteClinicoMapper.toExpedienteClinicoDTO(expediente)).collect(Collectors.toList());
+       return expedienteClinicoDTOList;
+    }
+
+
 }

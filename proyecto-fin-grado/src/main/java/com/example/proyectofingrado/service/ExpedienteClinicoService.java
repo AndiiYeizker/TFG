@@ -17,4 +17,6 @@ public interface ExpedienteClinicoService {
 
 
     void borrarExpedienteClinico(int idExpedienteClinico);
+
+    List<ExpedienteClinicoDTO> obtenerExpedientesClinicos();
 }
