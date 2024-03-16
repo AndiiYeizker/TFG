@@ -9,7 +9,7 @@ public interface ExpedienteClinicoService {
 
     void guardarExpedienteClinico(int idPaciente, ExpedienteClinicoDTO expedienteClinicoDTO);
 
-    List<ExpedienteClinicoDTO> obtenerExpedienteClinicosPorPaciente(int idPaciente);
+    List<ExpedienteClinicoDTO> obtenerListaExpedientesClinicosPorPaciente(int idPaciente);
 
     ExpedienteClinicoDTO getExpedienteClinicoById(int idExpedienteClinico);
 
@@ -19,4 +19,6 @@ public interface ExpedienteClinicoService {
     void borrarExpedienteClinico(int idExpedienteClinico);
 
     List<ExpedienteClinicoDTO> obtenerExpedientesClinicos();
+
+    ExpedienteClinicoDTO obtenerExpedienteClinicoPorPaciente(int idPaciente, int idExpediente);
 }

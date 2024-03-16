@@ -1,10 +1,8 @@
 package com.example.proyectofingrado.service.impl;
 
 import com.example.proyectofingrado.dtoPeticiones.ExpedienteClinicoDTO;
-import com.example.proyectofingrado.dtoPeticiones.PacienteDTO;
 import com.example.proyectofingrado.entity.ExpedienteClinico;
 import com.example.proyectofingrado.entity.Paciente;
-import com.example.proyectofingrado.mapper.PacienteMapper;
 import com.example.proyectofingrado.repository.ExpedienteClinicoRepository;
 import com.example.proyectofingrado.repository.PacienteRepository;
 import com.example.proyectofingrado.service.ExpedienteClinicoService;
@@ -34,16 +32,6 @@ public class ExpendienteClinicoServiceImpl implements ExpedienteClinicoService{
         expedienteClinicoRepository.save(expedienteClinico);
     }
 
-    @Override
-    public List<ExpedienteClinicoDTO> obtenerExpedienteClinicosPorPaciente(int idPaciente) {
-        Paciente paciente = pacienteRepository.findById((long) idPaciente)
-                .orElseThrow(() -> new RuntimeException("Paciente no encontrado"));
-        List<ExpedienteClinico> expedienteClinicoList = expedienteClinicoRepository.findByPaciente(paciente);
-        List<ExpedienteClinicoDTO> expedienteClinicoDTOList = expedienteClinicoList.stream().map((expedienteClinico) -> ExpedienteClinicoMapper.toExpedienteClinicoDTO(expedienteClinico))
-                .collect(Collectors.toList());
-        return expedienteClinicoDTOList;
-    }
-
 
     @Override
     public ExpedienteClinicoDTO getExpedienteClinicoById(int idExpedienteClinico) {
@@ -62,7 +50,8 @@ public class ExpendienteClinicoServiceImpl implements ExpedienteClinicoService{
         expedienteClinicoRepository.deleteById((long) idExpedienteClinico);
     }
 
-
+/**METODOS DE DEVOLVER EXPEDIENTES**/
+/**todos los expedientes*/
     @Override
     public List<ExpedienteClinicoDTO> obtenerExpedientesClinicos() {
         List<ExpedienteClinico> expedienteClinicoList = expedienteClinicoRepository.findAll();
@@ -71,5 +60,24 @@ public class ExpendienteClinicoServiceImpl implements ExpedienteClinicoService{
        return expedienteClinicoDTOList;
     }
 
+    /**todos los expedientes de un paciente**/
+    @Override
+    public List<ExpedienteClinicoDTO> obtenerListaExpedientesClinicosPorPaciente(int idPaciente) {
+        Paciente paciente = pacienteRepository.findById((long) idPaciente)
+                .orElseThrow(() -> new RuntimeException("Paciente no encontrado"));
+        List<ExpedienteClinico> expedienteClinicoList = expedienteClinicoRepository.findByPaciente(paciente);
+        List<ExpedienteClinicoDTO> expedienteClinicoDTOList = expedienteClinicoList.stream().map((expedienteClinico) -> ExpedienteClinicoMapper.toExpedienteClinicoDTO(expedienteClinico))
+                .collect(Collectors.toList());
+        return expedienteClinicoDTOList;
+    }
 
+/**Un único expediente de un paciente**/
+    @Override
+    public ExpedienteClinicoDTO obtenerExpedienteClinicoPorPaciente(int idPaciente, int idExpediente) {
+        Paciente paciente = pacienteRepository.findById((long) idPaciente)
+                .orElseThrow(() -> new RuntimeException("Paciente no encontrado"));
+        ExpedienteClinico expedienteClinico = expedienteClinicoRepository.findByIdAndPaciente(idExpediente,paciente);
+        ExpedienteClinicoDTO expedienteClinicoDTO = ExpedienteClinicoMapper.toExpedienteClinicoDTO(expedienteClinico);
+        return expedienteClinicoDTO;
+    }
 }

@@ -2,6 +2,7 @@ package com.example.proyectofingrado.controller;
 
 import com.example.proyectofingrado.dtoPeticiones.ExpedienteClinicoDTO;
 import com.example.proyectofingrado.entity.ExpedienteClinico;
+import com.example.proyectofingrado.service.EnfermedadService;
 import com.example.proyectofingrado.service.ExpedienteClinicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,10 @@ public class ExpedienteClinicoController {
 
 @Autowired
     ExpedienteClinicoService expedienteClinicoService;
+
+@Autowired
+    EnfermedadService enfermedadService;
+
 
     // Página visual que contiene la lista de todos los expedientes clínicos
     @GetMapping("/expedientes")
@@ -44,12 +49,16 @@ public class ExpedienteClinicoController {
         return "redirect:/expedientes";
     }
 
-    // Página web para actualizar los datos de un expediente clínico
+    /** Página web para actualizar los datos de un expediente clínico*/
+    //en el futuro poner que la lsita de enfermedades traiga solo las que tengan estado seird de infeccion
     @GetMapping("/expedientes/{idExpediente}/actualizar")
     public String actualizarExpedienteClinico(@PathVariable("idExpediente") int idExpediente, Model model) {
         ExpedienteClinicoDTO expedienteClinicoDTO = expedienteClinicoService.getExpedienteClinicoById(idExpediente);
+        List<String> nombresEnfermedades = enfermedadService.obtenerNombresEnfermedades();
+
+        model.addAttribute("nombresEnfermedades", nombresEnfermedades);
         model.addAttribute("expediente", expedienteClinicoDTO);
-        return "actualizar_expediente";
+        return "expediente_actualizar";
     }
 
     // Método para actualizar la información de un expediente clínico
@@ -59,27 +68,28 @@ public class ExpedienteClinicoController {
 
         if (result.hasErrors()) {
             model.addAttribute("expediente", expedienteClinicoDTO);
-            return "actualizar_expediente";
+            return "expediente_actualizar";
         }
         expedienteClinicoDTO.setId(idExpediente);
         expedienteClinicoService.actualizarExpedienteClinico(expedienteClinicoDTO);
 
-        return "redirect:/expedientes";
+        return "redirect:/pacientes";
     }
 
     // Borrar un expediente clínico (botón borrar)
     @GetMapping("expedientes/{idExpediente}/borrar")
     public String borrarExpedienteClinico(@PathVariable("idExpediente") int idExpediente){
         expedienteClinicoService.borrarExpedienteClinico(idExpediente);
-        return "redirect:/expedientes";
+        return "redirect:/pacientes";
     }
 
     // Página de ver expediente clínico (para botón ver expediente clínico)
-    @GetMapping("/expedientes/{idExpediente}/ver")
-    public String verExpedienteClinico(@PathVariable("idExpediente") int idExpediente,
+    @GetMapping("/expedientes/{idPaciente}/{idExpediente}/ver")
+    public String verExpedienteClinico(@PathVariable("idPaciente") int idPaciente,
+                                       @PathVariable("idExpediente") int idExpediente,
                                        Model model){
-        ExpedienteClinicoDTO expedienteClinicoDTO = expedienteClinicoService.getExpedienteClinicoById(idExpediente);
+        ExpedienteClinicoDTO expedienteClinicoDTO = expedienteClinicoService.obtenerExpedienteClinicoPorPaciente(idPaciente,idExpediente);
         model.addAttribute("expediente", expedienteClinicoDTO);
-        return "ver_expediente";
+        return "expediente_ver";
     }
 }

@@ -41,7 +41,7 @@
         <tr>
             <th>Nombre</th>
             <th>Apellidos</th>
-            <th>Acciones</th>
+            <th>Acciones del paciente</th>
             <th>Registro de Enfermedades</th>
         </tr>
         </thead>
@@ -67,23 +67,23 @@
                         <th>Enfermedad</th>
                         <th>Fecha de Inicio de Síntomas</th>
                         <th>Estado SEIRD</th>
-                        <th>Acciones</th>
+                        <th>Expediente</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="expedienteClinico : ${paciente.expedienteClinicoList}">
                         <td th:text="${expedienteClinico.enfermedad.nombre}"></td>
                         <td th:text="${expedienteClinico.fechaInicioSintomas}"></td>
-                        <!-- Primera fila de botones    <td>
-                            <a class="btn btn-success"
-                               th:href="@{/expedientes/{idExpediente}/ver(idExpediente=${expediente.idExpediente})}">Ver Expediente</a>
-                            <a class="btn btn-primary"
-                               th:href="@{/expedientes/{idExpediente}/actualizar(idExpediente=${expediente.idExpediente})}">Actualizar
-                                Expediente</a>
-                            <a class="btn btn-danger"
-                               th:href="@{/expedientes/{idExpediente}/borrar(idExpediente=${expediente.idExpediente})}">Borrar
-                                Expediente</a>
-                        </td> -->
+                        <td> </td>
+                        <!-- Primera fila de botones    <td>-->
+                        <td>
+                            <a class="btn btn-success btn-sm"
+                               th:href="@{/expedientes/{idPaciente}/{idExpediente}/ver(idPaciente=${paciente.id}, idExpediente=${expedienteClinico.id})}">Ver</a>
+                            <a class="btn btn-primary btn-sm"
+                               th:href="@{/expedientes/{idExpediente}/actualizar(idExpediente=${expedienteClinico.id})}">Actualizar</a>
+                            <a class="btn btn-danger btn-sm"
+                               th:href="@{/expedientes/{idExpediente}/borrar(idExpediente=${expedienteClinico.id})}">Borrar</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

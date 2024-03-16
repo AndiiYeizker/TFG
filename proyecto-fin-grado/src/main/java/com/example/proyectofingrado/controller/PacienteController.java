@@ -65,14 +65,6 @@ public class PacienteController {
         return "redirect:/pacientes";
     }
 
-    //Pagina web de actualizar los datos de un paciente
-    @GetMapping("/pacientes/{idPaciente}/actualizar")
-    public String actualizarPaciente(@PathVariable("idPaciente") int idPaciente, Model model) {
-        PacienteDTO pacienteDTO = pacienteService.getPacienteById(idPaciente);
-        model.addAttribute("paciente", pacienteDTO);
-        return "actualizar_paciente";
-    }
-
     //metodo para actualizar info de los pacientes
     @PostMapping("/pacientes/{idPaciente}") //url que he puesto en th:action
     public String actualizarPaciente(@PathVariable("idPaciente") int idPaciente, @Valid @ModelAttribute("paciente")
@@ -93,6 +85,14 @@ public class PacienteController {
     public String borrarPaciente(@PathVariable("idPaciente") int idPaciente){
         pacienteService.borrarPaciente(idPaciente);
         return "redirect:/pacientes";
+    }
+
+    //Pagina web de actualizar los datos de un paciente
+    @GetMapping("/pacientes/{idPaciente}/actualizar")
+    public String actualizarPaciente(@PathVariable("idPaciente") int idPaciente, Model model) {
+        PacienteDTO pacienteDTO = pacienteService.getPacienteById(idPaciente);
+        model.addAttribute("paciente", pacienteDTO);
+        return "actualizar_paciente";
     }
 
     ///pagina de ver paciente (para boton ver paciente)

@@ -20,4 +20,6 @@ public interface EnfermedadService {
     void actualizarEnfermedad(EnfermedadDTO EnfermedadDTO);
 
     void borrarEnfermedad(Long idEnfermedad);
+
+    List<String> obtenerNombresEnfermedades();
 }

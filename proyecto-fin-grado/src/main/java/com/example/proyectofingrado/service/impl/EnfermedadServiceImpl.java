@@ -50,4 +50,9 @@ public class EnfermedadServiceImpl implements EnfermedadService {
         enfermedadRepository.deleteById(idEnfermedad);
     }
 
+    @Override
+    public List<String> obtenerNombresEnfermedades() {
+        List<String> nombresEnfermedades = enfermedadRepository.findAllNombres();
+        return nombresEnfermedades;
+    }
 }
