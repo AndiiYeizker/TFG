@@ -20,7 +20,7 @@ import java.util.Date;
 public class ExpedienteClinicoDTO {
 
     private int id;
-    private Paciente idPaciente;
+    private Paciente paciente;
     private Enfermedad enfermedad;
     private Date fechaInicioSintomas;
 }

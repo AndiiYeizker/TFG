@@ -45,7 +45,7 @@ public class ExpedienteClinicoController {
     // Guarda un expediente clínico
     @PostMapping("/expedientes")
     public String guardarExpedienteClinico(@ModelAttribute("expediente") ExpedienteClinicoDTO expedienteClinicoDTO) {
-        expedienteClinicoService.guardarExpedienteClinico(expedienteClinicoDTO.getIdPaciente().getId(), expedienteClinicoDTO);
+        expedienteClinicoService.guardarExpedienteClinico(expedienteClinicoDTO.getPaciente().getId(), expedienteClinicoDTO);
         return "redirect:/expedientes";
     }
 
