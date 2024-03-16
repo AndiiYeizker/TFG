@@ -32,7 +32,7 @@ public class ExpedienteClinico {
     private Paciente paciente;
 
     /**Rellenado por el paciente*/
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idEnfermedad")
     private Enfermedad enfermedad;
 
