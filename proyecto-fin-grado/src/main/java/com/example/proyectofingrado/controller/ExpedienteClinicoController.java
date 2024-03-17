@@ -49,7 +49,7 @@ public class ExpedienteClinicoController {
         return "redirect:/expedientes";
     }
 
-    @PostMapping("/expedientes/{idExpediente}/aceptar")
+    @GetMapping("/expedientes/{idExpediente}/aceptar")
     public String aceptarExpedienteClinico(@PathVariable("idExpediente") int idExpediente) {
         expedienteClinicoService.aceptarExpediente(idExpediente);
         return "redirect:/pacientes";

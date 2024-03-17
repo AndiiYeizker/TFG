@@ -32,10 +32,19 @@
     </div>
 </nav>
 
+
 <div class="container">
     <div class="row col-md-10">
         <h2>Listado de Pacientes</h2>
     </div>
+
+    <div class="mb-3">
+        <input type="text" class="form-control" id="searchInput" placeholder="Buscador">
+        <button class="btn btn-primary mt-2" id="searchButton">Buscar</button>
+    </div>
+
+    <br>
+
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
         <tr>
@@ -65,15 +74,14 @@
                     <thead class="table-info">
                     <tr>
                         <th>Enfermedad</th>
-                        <th>Fecha de Inicio de Síntomas</th>
                         <th>Estado SEIRD</th>
                         <th>Expediente</th>
+                        <th>Datos globales</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="expedienteClinico : ${paciente.expedienteClinicoList}">
                         <td th:text="${expedienteClinico.enfermedad.nombre}"></td>
-                        <td th:text="${expedienteClinico.fechaInicioSintomas}"></td>
                         <td> </td>
                         <!-- Primera fila de botones    <td>-->
                         <td>
@@ -83,8 +91,10 @@
                                th:href="@{/expedientes/{idExpediente}/actualizar(idExpediente=${expedienteClinico.id})}">Actualizar</a>
                             <a class="btn btn-danger btn-sm"
                                th:href="@{/expedientes/{idExpediente}/borrar(idExpediente=${expedienteClinico.id})}">Borrar</a>
-                            <a class="btn btn-warning btn-sm"
-                               th:href="@{/expedientes/{idExpediente}/aceptar(idExpediente=${expedienteClinico.id})}">Añadir registro a datos globales</a>
+                        </td>
+                        <td>
+                            <a id="btnAñadirRegistro" class="btn btn-warning btn-sm"
+                               th:href="@{/expedientes/{idExpediente}/aceptar(idExpediente=${expedienteClinico.id})}">Añadir</a>
                         </td>
                     </tr>
                     </tbody>
@@ -96,5 +106,38 @@
     </table>
 </div>
 </body>
+<script>
+    document.getElementById('btnAñadirRegistro').onclick = function() {
+        // Para mostrar el cuadro de confirmación
+        var confirmacion = confirm("¿Estás seguro de que deseas añadir este registro a los datos globales?");
+        // Si el usuario confirma, continuar con la solicitud
+        if (confirmacion) {
+            return true;
+        } else {
+            // Si el usuario cancela, detener la acción predeterminada del botón
+            return false;
+        }
+    };
+
+     document.getElementById('searchButton').onclick = function() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.querySelector("table");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0]; // Cambiar a [1] si quieres buscar por apellidos
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    };
+</script>
 
 </html>
