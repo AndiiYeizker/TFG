@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Aplicacion Sanitaria</title>
@@ -18,30 +16,55 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/pacientes/crear}">Nuevo Paciente</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/pacientes}">Pacientes</a>
+          <a class="nav-link active" aria-current="page" th:href="@{/menu}">Menu</a>
         </li>
       </ul>
     </div>
+
+    <div class="d-flex justify-content-end">
+      <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+    </div>
   </div>
+
+
 </nav>
 <br /><br />
 <div class="container">
   <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-5">
       <div class="card">
         <div class="card-header">
-          <h2 class="text-center">Informacion del paciente</h2>
+          <h2 class="text-center ">Informacion del paciente</h2>
         </div>
         <div class="card-body">
           <p> Nombre: <strong th:text="${paciente.nombre}"></strong></p>
           <p> Apellidos: <strong th:text="${paciente.apellidos}"></strong></p>
           <p> Edad: <strong th:text="${paciente.edad}"></strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5 " >
+      <div class="card">
+        <div class="card-header">
+          <h2 class="text-center">Mi Historial de Enfermedades</h2>
+        </div>
+        <div class="card-body overflow-auto" style="max-height: 300px;">
+          <ul class="list-group">
+            <li class="list-group-item" th:each="expedienteClinico : ${paciente.expedienteClinicoList}">
+              <span th:text="${expedienteClinico.enfermedad.nombre}"></span>
+              <span th:text="${expedienteClinico.fechaInicioSintomas}"></span>
+              <div class="btn-group" role="group">
+                <a class="btn btn-success btn-sm" th:href="@{/expedientes/{idPaciente}/{idExpediente}/ver(idPaciente=${paciente.id}, idExpediente=${expedienteClinico.id})}">Ver</a>
+                <a class="btn btn-primary btn-sm" th:href="@{/expedientes/{idExpediente}/actualizar(idExpediente=${expedienteClinico.id})}">Actualizar</a>
+                <a class="btn btn-danger btn-sm" th:href="@{/expedientes/{idExpediente}/borrar(idExpediente=${expedienteClinico.id})}">Borrar</a>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
