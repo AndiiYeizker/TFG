@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Lista de Enfermedades</title>
@@ -10,7 +8,6 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
 </head>
-<link rel="stylesheet" type="text/css" href="../static/estilos.css">
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -39,7 +36,15 @@
 <div class="container">
     <div class="row col-md-10">
         <h2>Listado de Enfermedades Disponibles</h2>
+        <br>
+        <form id="searchForm">
+            <div class="form-group">
+                <label for="searchInput">Buscar:</label>
+                <input type="text" class="form-control" id="searchInput" placeholder="Ingrese palabra clave">
+            </div>
+        </form>
     </div>
+    <br>
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
         <tr>
@@ -59,11 +64,34 @@
             <td th:text="${enfermedad.sintomas}"></td>
             <td th:text="${enfermedad.vacunasDisponibles}"></td>
             <td th:text="${enfermedad.testDeteccion}"></td>
-            <td>
-            </td>
+            <td></td>
         </tr>
         </tbody>
     </table>
 </div>
+
+<script>
+    document.getElementById('searchInput').addEventListener('input', function () {
+        var searchQuery = this.value.trim().toLowerCase();
+        var rows = document.querySelectorAll('tbody tr');
+
+        rows.forEach(function (row) {
+            var cells = row.querySelectorAll('td');
+            var found = false;
+            cells.forEach(function (cell) {
+                var text = cell.textContent.trim().toLowerCase();
+                if (text.includes(searchQuery)) {
+                    found = true;
+                }
+            });
+            if (found) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

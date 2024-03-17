@@ -13,7 +13,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "expedienteClinico")
@@ -45,6 +44,17 @@ public class ExpedienteClinico {
         this.fechaInicioSintomas = fechaInicioSintomas;
     }
 
+    public ExpedienteClinico(int id, Paciente paciente, Enfermedad enfermedad, Date fechaInicioSintomas, int diasIncubacion, int diasInfeccion, int diasTotales, boolean aceptado) {
+        this.id = id;
+        this.paciente = paciente;
+        this.enfermedad = enfermedad;
+        this.fechaInicioSintomas = fechaInicioSintomas;
+        this.diasIncubacion = diasIncubacion;
+        this.diasInfeccion = diasInfeccion;
+        this.diasTotales = diasTotales;
+        this.aceptado = false;
+    }
+
     //cambiará según la fecha. hay que ver si dejamos la fecha del calendario o si el paciente
     //actualiza su estado, que se actualice tambiéne estadoSeird. Eso sería lo mejor.
    // private t_estadoSEIRD estadoSEIRD;
@@ -60,7 +70,7 @@ public class ExpedienteClinico {
 
     //true = el medico ha pasado consulta y pasa los datos a graficas oficiales, false: solo es para que la persona lo consulte
     //estado por defecto es false
-    private boolean revisado;
+    private boolean aceptado;
 
 
 }

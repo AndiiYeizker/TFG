@@ -80,4 +80,14 @@ public class ExpendienteClinicoServiceImpl implements ExpedienteClinicoService{
         ExpedienteClinicoDTO expedienteClinicoDTO = ExpedienteClinicoMapper.toExpedienteClinicoDTO(expedienteClinico);
         return expedienteClinicoDTO;
     }
+
+    /**Parte de las graficas**/
+    @Override
+    public void aceptarExpediente(int idExpediente) {
+        ExpedienteClinico expediente = expedienteClinicoRepository.findById((long) idExpediente)
+                .orElseThrow(() -> new RuntimeException("Expediente no encontrado con ID: " + idExpediente));
+
+        expediente.setAceptado(true);
+        expedienteClinicoRepository.save(expediente);
+    }
 }

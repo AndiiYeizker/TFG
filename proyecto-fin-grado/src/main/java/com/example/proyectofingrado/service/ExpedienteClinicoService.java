@@ -21,4 +21,6 @@ public interface ExpedienteClinicoService {
     List<ExpedienteClinicoDTO> obtenerExpedientesClinicos();
 
     ExpedienteClinicoDTO obtenerExpedienteClinicoPorPaciente(int idPaciente, int idExpediente);
+
+    void aceptarExpediente(int idExpediente);
 }

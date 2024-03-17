@@ -49,6 +49,11 @@ public class ExpedienteClinicoController {
         return "redirect:/expedientes";
     }
 
+    @PostMapping("/expedientes/{idExpediente}/aceptar")
+    public String aceptarExpedienteClinico(@PathVariable("idExpediente") int idExpediente) {
+        expedienteClinicoService.aceptarExpediente(idExpediente);
+        return "redirect:/pacientes";
+    }
     /** Página web para actualizar los datos de un expediente clínico*/
     //en el futuro poner que la lsita de enfermedades traiga solo las que tengan estado seird de infeccion
     @GetMapping("/expedientes/{idExpediente}/actualizar")
