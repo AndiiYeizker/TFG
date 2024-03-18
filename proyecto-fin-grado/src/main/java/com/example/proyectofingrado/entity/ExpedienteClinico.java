@@ -57,7 +57,9 @@ public class ExpedienteClinico {
 
     //cambiará según la fecha. hay que ver si dejamos la fecha del calendario o si el paciente
     //actualiza su estado, que se actualice tambiéne estadoSeird. Eso sería lo mejor.
-   // private t_estadoSEIRD estadoSEIRD;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "estadoSEIRD")
+     private t_estadoSEIRD estadoSEIRD;
 
 
     /** Esto será la cuenta total de días que haga el paciente. Lo metemos en actualizar enferemdad.

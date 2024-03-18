@@ -2,6 +2,7 @@ package com.example.proyectofingrado.dtoPeticiones;
 
 import com.example.proyectofingrado.entity.Enfermedad;
 import com.example.proyectofingrado.entity.Paciente;
+import com.example.proyectofingrado.entity.t_estadoSEIRD;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
@@ -23,4 +24,10 @@ public class ExpedienteClinicoDTO {
     private Paciente paciente;
     private Enfermedad enfermedad;
     private Date fechaInicioSintomas;
+    private t_estadoSEIRD estadoSEIRD;
+
+    private int diasIncubacion;
+    private int diasInfeccion;
+    private int diasTotales;
+    private boolean aceptado;
 }

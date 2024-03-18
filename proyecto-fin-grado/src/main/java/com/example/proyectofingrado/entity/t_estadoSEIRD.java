@@ -23,7 +23,7 @@ public class t_estadoSEIRD {
     private String codigo;
 
     /** Estados posibles: susceptible, expuesto, infectado, recuperado, deceso*/
-    private String estadoSEIRD;
+    private String estado;
 
 
 }
