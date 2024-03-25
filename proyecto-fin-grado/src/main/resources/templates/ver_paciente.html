@@ -38,12 +38,17 @@
     <div class="col-md-5">
       <div class="card">
         <div class="card-header">
-          <h2 class="text-center ">Informacion del paciente</h2>
+          <h2 class="text-center ">Información:  <a class="btn btn-primary"
+                                                    th:href="@{/pacientes/{idPaciente}/actualizar(idPaciente=${paciente.id})}">Actualizar
+            Informacion</a></h2>
         </div>
         <div class="card-body">
           <p> Nombre: <strong th:text="${paciente.nombre}"></strong></p>
           <p> Apellidos: <strong th:text="${paciente.apellidos}"></strong></p>
           <p> Edad: <strong th:text="${paciente.edad}"></strong></p>
+          <p> Altura: <strong th:text="${paciente.altura}"></strong></p>
+          <p> Peso: <strong th:text="${paciente.peso}"></strong></p>
+          <p> Pais: <strong th:text="${paciente.pais}"></strong></p>
         </div>
       </div>
     </div>
@@ -60,9 +65,12 @@
               <span th:text="${expedienteClinico.fechaInicioSintomas}"></span>
               <div class="btn-group" role="group">
                 <a class="btn btn-success btn-sm" th:href="@{/expedientes/{idPaciente}/{idExpediente}/ver(idPaciente=${paciente.id}, idExpediente=${expedienteClinico.id})}">Ver</a>
+                &nbsp; &nbsp; <!-- Espacio en blanco -->
                 <a class="btn btn-primary btn-sm" th:href="@{/expedientes/{idExpediente}/actualizar(idExpediente=${expedienteClinico.id})}">Actualizar</a>
+                &nbsp; &nbsp; <!-- Espacio en blanco -->
                 <a class="btn btn-danger btn-sm" th:href="@{/expedientes/{idExpediente}/borrar(idExpediente=${expedienteClinico.id})}">Borrar</a>
               </div>
+
             </li>
           </ul>
         </div>

@@ -29,22 +29,21 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="text-center">Información del historial: <a class="btn btn-primary btn-sm"
-                                                                          th:href="@{/expedientes/{idExpediente}/actualizar(idExpediente=${expedienteClinico.id})}">Actualizar</a></h2>
+                                                                          th:href="@{/expedientes/{idExpediente}/actualizar(idExpediente=${expediente.id})}">Actualizar</a></h2>
                 </div>
                 <div class="card-body">
                     <p> Paciente: <strong th:text="${expediente.paciente.nombre}"></strong></p>
                     <p> Enfermedad: <strong th:text="${expediente.enfermedad.nombre}"></strong></p>
-                    <p> Estado la enfermedad: <strong th:text="${expediente.estadoSEIRD.estado}"></strong></p>
 
-                    <p>┌────────────────┐</p>
+                    <p>────────────────────────────────────────────────────────────────</p>
                     <p> Día de comienzo de síntomas: <strong th:text="${expediente.fechaInicioSintomas}"></strong></p>
                     <p> Días de incubación (desde primer contacto hasta aparición de síntomas): <strong th:text="${expediente.diasIncubacion}"></strong></p>
                     <p> Días totales que ha tenido síntomas: <strong th:text="${expediente.diasInfeccion}"></strong></p>
                     <p> Días totales de enfermedad (desde primer contacto hasta cese de síntomas): <strong th:text="${expediente.diasTotales}"></strong></p>
-                    <p> └────────────────┘</p>
+                    <p>────────────────────────────────────────────────────────────────</p>
                     <p> Aceptar registro para usar sus datos en el cálculo de datos de población: <strong th:text="${expediente.aceptado}"></strong></p>
                     <a id="btnAñadirRegistro" class="btn btn-warning btn-sm"
-                       th:href="@{/expedientes/{idExpediente}/aceptar(idExpediente=${expedienteClinico.id})}">Añadir</a>
+                       th:href="@{/expedientes/{idExpediente}/aceptar(idExpediente=${expediente.id})}">Añadir</a>
                 </div>
             </div>
         </div>

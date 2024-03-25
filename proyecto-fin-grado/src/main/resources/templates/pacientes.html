@@ -82,7 +82,7 @@
                     <tbody>
                     <tr th:each="expedienteClinico : ${paciente.expedienteClinicoList}">
                         <td th:text="${expedienteClinico.enfermedad.nombre}"></td>
-                        <td> </td>
+                        <td th:text="${expedienteClinico.estadoSEIRD.estado}"> </td>
                         <!-- Primera fila de botones    <td>-->
                         <td>
                             <a class="btn btn-success btn-sm"
