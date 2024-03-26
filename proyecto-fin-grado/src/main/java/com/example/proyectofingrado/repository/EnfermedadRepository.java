@@ -12,4 +12,6 @@ import java.util.List;
 public interface EnfermedadRepository extends JpaRepository<Enfermedad, Long> {
     @Query("SELECT e.nombre FROM Enfermedad e")
     List<String> findAllNombres();
+
+    Enfermedad findByNombre(String nombre);
 }

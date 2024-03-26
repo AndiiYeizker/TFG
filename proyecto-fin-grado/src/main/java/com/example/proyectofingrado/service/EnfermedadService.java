@@ -2,6 +2,7 @@ package com.example.proyectofingrado.service;
 
 import com.example.proyectofingrado.dtoPeticiones.PacienteDTO;
 import com.example.proyectofingrado.dtoRespuestas.EnfermedadDTO;
+import com.example.proyectofingrado.entity.Enfermedad;
 import com.example.proyectofingrado.entity.Paciente;
 import com.example.proyectofingrado.mapper.PacienteMapper;
 
@@ -12,6 +13,8 @@ public interface EnfermedadService {
 
 
     void guardarEnfermedad(EnfermedadDTO EnfermedadDTO);
+
+    Enfermedad obtenerEnfermedadPorNombre(String nombreEnfermedad);
 
     List<EnfermedadDTO> obtenerEnfermedads();
 

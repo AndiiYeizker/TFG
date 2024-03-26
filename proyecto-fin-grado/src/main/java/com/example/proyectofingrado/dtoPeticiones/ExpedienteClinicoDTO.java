@@ -3,10 +3,7 @@ package com.example.proyectofingrado.dtoPeticiones;
 import com.example.proyectofingrado.entity.Enfermedad;
 import com.example.proyectofingrado.entity.Paciente;
 import com.example.proyectofingrado.entity.t_estadoSEIRD;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,8 +20,9 @@ public class ExpedienteClinicoDTO {
 
     private int id;
     private Paciente paciente;
+    @ManyToOne(cascade = CascadeType.PERSIST) //para el error de flush the transient instance
     private Enfermedad enfermedad;
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy") //MM = mes mm = minutos
     private Date fechaInicioSintomas;
     private t_estadoSEIRD estadoSEIRD;
 

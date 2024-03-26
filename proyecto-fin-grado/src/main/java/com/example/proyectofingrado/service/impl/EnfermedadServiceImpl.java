@@ -25,6 +25,10 @@ public class EnfermedadServiceImpl implements EnfermedadService {
     }
 
     @Override
+    public Enfermedad obtenerEnfermedadPorNombre(String nombreEnfermedad) {
+        return enfermedadRepository.findByNombre(nombreEnfermedad);
+    }
+    @Override
     public List<EnfermedadDTO> obtenerEnfermedads() {
         List<Enfermedad> enfermedadList = enfermedadRepository.findAll();
         List<EnfermedadDTO> enfermedadDTOList = enfermedadList.stream().map((enfermedad) -> EnfermedadMapper.toEnfermedadDTO(enfermedad))

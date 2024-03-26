@@ -2,6 +2,7 @@ package com.example.proyectofingrado.controller;
 
 import com.example.proyectofingrado.dtoPeticiones.ExpedienteClinicoDTO;
 import com.example.proyectofingrado.dtoPeticiones.PacienteDTO;
+import com.example.proyectofingrado.entity.Enfermedad;
 import com.example.proyectofingrado.entity.ExpedienteClinico;
 import com.example.proyectofingrado.entity.Paciente;
 import com.example.proyectofingrado.service.EnfermedadService;
@@ -61,9 +62,11 @@ public class ExpedienteClinicoController {
 
     //Guarda un expediente clinico y redirecciona a ver paciente
     @PostMapping("/expedientes/crear/{idPaciente}")
-    public String guardarExpedienteClinico(@PathVariable Long idPaciente,@ModelAttribute("expediente") ExpedienteClinicoDTO expedienteClinicoDTO) {//model attribute es el th:object del html
-        expedienteClinicoService.guardarExpedienteClinico(Math.toIntExact(idPaciente),expedienteClinicoDTO);
-        return "redirect:/ver_paciente";
+    public String guardarExpedienteClinico(@PathVariable Long idPaciente, @ModelAttribute("expediente") ExpedienteClinicoDTO expedienteClinicoDTO) {
+        Enfermedad enfermedad = enfermedadService.obtenerEnfermedadPorNombre(expedienteClinicoDTO.getEnfermedad().getNombre());
+        expedienteClinicoDTO.setEnfermedad(enfermedad);
+        expedienteClinicoService.guardarExpedienteClinico(Math.toIntExact(idPaciente), expedienteClinicoDTO);
+        return "redirect:/menu";
     }
 
     @GetMapping("/expedientes/{idExpediente}/aceptar")
