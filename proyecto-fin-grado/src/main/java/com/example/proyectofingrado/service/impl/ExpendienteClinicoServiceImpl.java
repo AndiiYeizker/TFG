@@ -23,7 +23,7 @@ public class ExpendienteClinicoServiceImpl implements ExpedienteClinicoService{
     PacienteRepository pacienteRepository;
 
 
-
+/**Crear expediente**/
     @Override
     public void guardarExpedienteClinico(int idPaciente, ExpedienteClinicoDTO expedienteClinicoDTO) {
         Paciente paciente = pacienteRepository.findById((long) idPaciente).orElseThrow(() -> new RuntimeException("Paciente no encontrado"));

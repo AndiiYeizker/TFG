@@ -1,7 +1,9 @@
 package com.example.proyectofingrado.controller;
 
 import com.example.proyectofingrado.dtoPeticiones.ExpedienteClinicoDTO;
+import com.example.proyectofingrado.dtoPeticiones.PacienteDTO;
 import com.example.proyectofingrado.entity.ExpedienteClinico;
+import com.example.proyectofingrado.entity.Paciente;
 import com.example.proyectofingrado.service.EnfermedadService;
 import com.example.proyectofingrado.service.ExpedienteClinicoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,6 @@ public class ExpedienteClinicoController {
 @Autowired
     EnfermedadService enfermedadService;
 
-
     // Página visual que contiene la lista de todos los expedientes clínicos
     @GetMapping("/expedientes")
     public String listaExpedientesClinicos(Model model) {
@@ -35,18 +36,23 @@ public class ExpedienteClinicoController {
     }
 
     // Página web para crear un expediente clínico
-    @GetMapping("/expedientes/crear")
+    @GetMapping("/expedientes/crear/")
     public String crearExpedienteClinico(Model model) {
         ExpedienteClinicoDTO expedienteClinicoDTO = new ExpedienteClinicoDTO();
+        expedienteClinicoDTO.setPaciente(new Paciente()); // Asignar un paciente vacío por defecto
         model.addAttribute("expediente", expedienteClinicoDTO);
-        return "crear_expediente";
+
+        List<String> nombresEnfermedades = enfermedadService.obtenerNombresEnfermedades();
+        model.addAttribute("nombresEnfermedades", nombresEnfermedades);
+        return "expediente_crear";
     }
 
-    // Guarda un expediente clínico
-    @PostMapping("/expedientes")
-    public String guardarExpedienteClinico(@ModelAttribute("expediente") ExpedienteClinicoDTO expedienteClinicoDTO) {
-        expedienteClinicoService.guardarExpedienteClinico(expedienteClinicoDTO.getPaciente().getId(), expedienteClinicoDTO);
-        return "redirect:/expedientes";
+
+    //Guarda un expediente clinico y redirecciona a ver paciente
+    @PostMapping("/expedientes/crear")
+    public String guardarExpedienteClinico(@ModelAttribute("expediente") ExpedienteClinicoDTO expedienteClinicoDTO) {//model attribute es el th:object del html
+        expedienteClinicoService.guardarExpedienteClinico(expedienteClinicoDTO.getPaciente().getId(),expedienteClinicoDTO);
+        return "redirect:/ver_paciente";
     }
 
     @GetMapping("/expedientes/{idExpediente}/aceptar")
