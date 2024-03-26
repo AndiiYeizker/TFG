@@ -6,14 +6,12 @@ import com.example.proyectofingrado.entity.ExpedienteClinico;
 import com.example.proyectofingrado.entity.Paciente;
 import com.example.proyectofingrado.service.EnfermedadService;
 import com.example.proyectofingrado.service.ExpedienteClinicoService;
+import com.example.proyectofingrado.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import jakarta.validation.Valid;
@@ -27,6 +25,9 @@ public class ExpedienteClinicoController {
 @Autowired
     EnfermedadService enfermedadService;
 
+    @Autowired
+    private PacienteService pacienteService;
+
     // Página visual que contiene la lista de todos los expedientes clínicos
     @GetMapping("/expedientes")
     public String listaExpedientesClinicos(Model model) {
@@ -36,10 +37,19 @@ public class ExpedienteClinicoController {
     }
 
     // Página web para crear un expediente clínico
-    @GetMapping("/expedientes/crear/")
-    public String crearExpedienteClinico(Model model) {
+    @GetMapping("/expedientes/crear/{idPaciente}")
+    public String crearExpedienteClinico(@PathVariable Long idPaciente, Model model) {
         ExpedienteClinicoDTO expedienteClinicoDTO = new ExpedienteClinicoDTO();
-        expedienteClinicoDTO.setPaciente(new Paciente()); // Asignar un paciente vacío por defecto
+        Paciente paciente = pacienteService.obtenerPacientePorId(idPaciente);
+
+        // Verificar si el paciente es null o no
+        if (paciente != null) {
+            expedienteClinicoDTO.setPaciente(paciente);
+        } else {
+            // Manejar la situación si el paciente no existe
+            // Aquí podrías lanzar una excepción, redirigir a una página de error, etc.
+        }
+
         model.addAttribute("expediente", expedienteClinicoDTO);
 
         List<String> nombresEnfermedades = enfermedadService.obtenerNombresEnfermedades();
@@ -48,10 +58,11 @@ public class ExpedienteClinicoController {
     }
 
 
+
     //Guarda un expediente clinico y redirecciona a ver paciente
-    @PostMapping("/expedientes/crear")
-    public String guardarExpedienteClinico(@ModelAttribute("expediente") ExpedienteClinicoDTO expedienteClinicoDTO) {//model attribute es el th:object del html
-        expedienteClinicoService.guardarExpedienteClinico(expedienteClinicoDTO.getPaciente().getId(),expedienteClinicoDTO);
+    @PostMapping("/expedientes/crear/{idPaciente}")
+    public String guardarExpedienteClinico(@PathVariable Long idPaciente,@ModelAttribute("expediente") ExpedienteClinicoDTO expedienteClinicoDTO) {//model attribute es el th:object del html
+        expedienteClinicoService.guardarExpedienteClinico(Math.toIntExact(idPaciente),expedienteClinicoDTO);
         return "redirect:/ver_paciente";
     }
 

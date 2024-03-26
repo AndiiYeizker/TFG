@@ -31,7 +31,10 @@
                     <h2 class="text-center">Crear Expediente Clínico</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post" role="form" th:action="@{/expedientes/crear}" th:object="${expediente}">
+                    <form method="post" role="form" th:action="@{/expedientes/crear/{idPaciente}(idPaciente=${expediente.paciente.id})}" th:object="${expediente}">
+                    <!-- Campo oculto para enviar el ID del paciente -->
+                        <input type="hidden" name="idPaciente" th:value="${expediente.paciente.id}" />
+
                         <!-- Campo para el paciente -->
                         <div class="form-group mb-3">
                             <label class="form-label">Paciente</label>
@@ -50,8 +53,10 @@
                         <!-- Utilizando Datepicker para el campo de fechaInicioSintomas -->
                         <div class="form-group mb-3">
                             <label class="form-label">Fecha de Inicio de Síntomas</label>
-                            <input class="form-control" type="text" id="fechaInicioSintomas" name="fechaInicioSintomas" th:value="${expediente.fechaInicioSintomas}" />
+                            <input class="form-control" type="text" id="fechaInicioSintomas" name="fechaInicioSintomas" th:value="${#dates.format(expediente.fechaInicioSintomas, 'dd-MM-yyyy')}" />
                         </div>
+
+
                         <button class="btn btn-primary" type="submit">Guardar</button>
                     </form>
                 </div>
@@ -76,7 +81,7 @@
 
         // Inicializar Datepicker
         $('#fechaInicioSintomas').datepicker({
-            format: 'yyyy-mm-dd', // Formato de fecha deseado
+            format: 'dd-mm-yyyy', // Formato de fecha deseado
             autoclose: true,
             todayHighlight: true
         });

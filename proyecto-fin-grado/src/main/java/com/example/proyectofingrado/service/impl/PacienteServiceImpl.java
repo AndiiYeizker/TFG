@@ -22,6 +22,11 @@ public class PacienteServiceImpl implements PacienteService {
        pacienteRepository.save(paciente);
     }
 
+
+    @Override
+    public Paciente obtenerPacientePorId(Long id) {
+        return pacienteRepository.findById(id).orElse(null);
+    }
     @Override
     public List<PacienteDTO> obtenerPacientes() {
         List<Paciente> pacienteList = pacienteRepository.findAll();

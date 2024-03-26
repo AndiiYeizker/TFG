@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface PacienteService  {
     void guardarPaciente(PacienteDTO pacienteDTO);
+
+    Paciente obtenerPacientePorId(Long id);
+
     List<PacienteDTO> obtenerPacientes();
 
     PacienteDTO getPacienteById(int idPaciente);

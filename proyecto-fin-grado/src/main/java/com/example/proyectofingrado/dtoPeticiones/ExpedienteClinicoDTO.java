@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -23,6 +24,7 @@ public class ExpedienteClinicoDTO {
     private int id;
     private Paciente paciente;
     private Enfermedad enfermedad;
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     private Date fechaInicioSintomas;
     private t_estadoSEIRD estadoSEIRD;
 
