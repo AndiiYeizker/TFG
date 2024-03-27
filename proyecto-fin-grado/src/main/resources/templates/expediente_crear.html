@@ -52,9 +52,19 @@
                         </div>
                         <!-- Datepicker para obtener fechaInicioSintomas -->
                         <div class="form-group mb-3">
-                            <label class="form-label">Fecha de Inicio de Síntomas</label>
+                            <label class="form-label">Fecha de Inicio de tus Síntomas</label>
                             <input class="form-control" type="text" id="fechaInicioSintomas" name="fechaInicioSintomas" th:value="${#dates.format(expediente.fechaInicioSintomas, 'dd-MM-yyyy')}" />
                         </div>
+
+                        <p>Ayúdanos a mejorar los datos aportando los tuyos:</p>
+                        <label for="diasIncubacion">Días desde el primer contacto hasta primer día de síntomas:</label>
+                        <input type="number" id="diasIncubacion" name="diasIncubacion" maxlength="8"><br><br>
+
+                        <label for="diasInfeccion">Días totales de síntomas:</label>
+                        <input type="number" id="diasInfeccion" name="diasInfeccion" maxlength="8"><br><br>
+
+                        <label for="diasTotales">Días Totales:</label>
+                        <input type="number" id="diasTotales" name="diasTotales" maxlength="8"><br><br>
 
 
                         <button class="btn btn-primary" type="submit">Guardar</button>
