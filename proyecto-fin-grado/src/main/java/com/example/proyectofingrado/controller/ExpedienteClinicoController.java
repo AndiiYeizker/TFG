@@ -62,24 +62,26 @@ public class ExpedienteClinicoController {
 
     //Guarda un expediente clinico y redirecciona a ver paciente
     @PostMapping("/expedientes/crear/{idPaciente}")
-    public String guardarExpedienteClinico(@PathVariable Long idPaciente, @ModelAttribute("expediente") ExpedienteClinicoDTO expedienteClinicoDTO) {
+    public String guardarExpedienteClinico(@PathVariable Long idPaciente, @ModelAttribute("expediente") ExpedienteClinicoDTO expedienteClinicoDTO,@RequestParam(value = "aceptadoPaciente", required = false) String aceptadoPaciente) {
         Enfermedad enfermedad = enfermedadService.obtenerEnfermedadPorNombre(expedienteClinicoDTO.getEnfermedad().getNombre());
         expedienteClinicoDTO.setEnfermedad(enfermedad);
+
+        // Verifica si se marcó el checkbox
+        if (aceptadoPaciente != null && aceptadoPaciente.equals("true")) {
+            expedienteClinicoDTO.setAceptadoPaciente(true);
+        } else {
+            expedienteClinicoDTO.setAceptadoPaciente(false);
+        }
+
         expedienteClinicoService.guardarExpedienteClinico(Math.toIntExact(idPaciente), expedienteClinicoDTO);
         return "redirect:/menu";
     }
 
     @GetMapping("/expedientes/{idExpediente}/aceptar")
-    public void aceptarExpedienteClinicoPaciente(@PathVariable("idExpediente") int idExpediente) {
-        expedienteClinicoService.aceptarExpedientePaciente(idExpediente);
+    public String aceptarExpedienteClinico(@PathVariable("idExpediente") int idExpediente) {
+        expedienteClinicoService.aceptarExpedienteMedico(idExpediente);
+        return "redirect:/pacientes";
     }
-
-    @GetMapping("/expedientes/{idExpediente}/denegar")
-    public void denegarExpedienteClinicoPaciente(@PathVariable("idExpediente") int idExpediente) {
-        expedienteClinicoService.aceptarExpedientePaciente(idExpediente);
-    }
-
-
     /** Página web para actualizar los datos de un expediente clínico*/
     //en el futuro poner que la lsita de enfermedades traiga solo las que tengan estado seird de infeccion
     @GetMapping("/expedientes/{idExpediente}/actualizar")

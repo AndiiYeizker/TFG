@@ -22,7 +22,5 @@ public interface ExpedienteClinicoService {
 
     ExpedienteClinicoDTO obtenerExpedienteClinicoPorPaciente(int idPaciente, int idExpediente);
 
-    void aceptarExpedientePaciente(int idExpediente);
-
-    void denegarExpedientePaciente(int idExpediente);
+    void aceptarExpedienteMedico(int idExpediente);
 }

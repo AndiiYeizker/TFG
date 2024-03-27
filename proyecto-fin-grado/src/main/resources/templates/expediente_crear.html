@@ -56,11 +56,10 @@
                             <input class="form-control" type="text" id="fechaInicioSintomas" name="fechaInicioSintomas" th:value="${#dates.format(expediente.fechaInicioSintomas, 'dd-MM-yyyy')}" />
                         </div>
 
-                        <h4>Ayúdanos a mejorar los datos aportando los tuyos:</h4>
-                        <p>Acepto que los datos de mi enfermedad se usen para estudio:</p>
-
-                        <label for="aceptadoPaciente">Aceptar Paciente:</label>
-                        <input type="checkbox" id="aceptadoPaciente" onchange="cambiarEstadoAceptadoPaciente(this)">
+                        <h4>Ayúdanos a mejorar la aplicacion aportando los datos de tu enfermedad:</h4>
+                        <p>Consiento que los datos de mi enfermedad se usen para estudio:</p>
+                        <label for="aceptadoPaciente">¿Aceptar paciente?</label>
+                        <input type="checkbox" id="aceptadoPaciente" name="aceptadoPaciente" value="true">
 
                         <label for="diasIncubacion">Días desde el primer contacto hasta primer día de síntomas:</label>
                         <input type="number" id="diasIncubacion" name="diasIncubacion" maxlength="8"><br><br>
@@ -88,17 +87,6 @@
 
 <!-- Inicializar Select2 y Datepicker -->
 <script th:inline="javascript">
-<script th:inline="javascript">
-    // Define la variable expediente y establece su propiedad aceptadoPaciente
-    var expediente = {
-        aceptadoPaciente: false // Por defecto, establecido en false
-    };
-
-    // Función para cambiar el estado de aceptadoPaciente
-    function cambiarEstadoAceptadoPaciente(checkbox) {
-        expediente.aceptadoPaciente = checkbox.checked;
-    }
-
     $(document).ready(function() {
         // Inicializar Select2
         $('.select2').select2({
@@ -114,8 +102,6 @@
         });
     });
 </script>
-</script>
-
 
 
 </body>
