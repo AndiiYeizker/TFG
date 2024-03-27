@@ -4,7 +4,6 @@ import com.example.proyectofingrado.mapper.ExpedienteClinicoMapper;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -44,7 +43,7 @@ public class ExpedienteClinico {
         this.fechaInicioSintomas = fechaInicioSintomas;
     }
 
-    public ExpedienteClinico(int id, Paciente paciente, Enfermedad enfermedad, Date fechaInicioSintomas, int diasIncubacion, int diasInfeccion, int diasTotales, boolean aceptado) {
+    public ExpedienteClinico(int id, Paciente paciente, Enfermedad enfermedad, Date fechaInicioSintomas, int diasIncubacion, int diasInfeccion, int diasTotales, boolean aceptadoPaciente, boolean aceptadoMedico) {
         this.id = id;
         this.paciente = paciente;
         this.enfermedad = enfermedad;
@@ -52,7 +51,8 @@ public class ExpedienteClinico {
         this.diasIncubacion = diasIncubacion;
         this.diasInfeccion = diasInfeccion;
         this.diasTotales = diasTotales;
-        this.aceptado = false;
+        this.aceptadoPaciente = false;
+        this.aceptadoMedico = false;
     }
 
     //cambiará según la fecha. hay que ver si dejamos la fecha del calendario o si el paciente
@@ -72,7 +72,7 @@ public class ExpedienteClinico {
 
     //true = el medico ha pasado consulta y pasa los datos a graficas oficiales, false: solo es para que la persona lo consulte
     //estado por defecto es false
-    private boolean aceptado;
+    private boolean aceptadoPaciente;
 
-
+    private boolean aceptadoMedico;
 }

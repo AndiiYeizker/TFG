@@ -81,13 +81,22 @@ public class ExpendienteClinicoServiceImpl implements ExpedienteClinicoService{
         return expedienteClinicoDTO;
     }
 
-    /**Parte de las graficas**/
+    /**Para proteccion de datos y aceptar datos revisados para la bd**/
     @Override
-    public void aceptarExpediente(int idExpediente) {
+    public void aceptarExpedientePaciente(int idExpediente) {
         ExpedienteClinico expediente = expedienteClinicoRepository.findById((long) idExpediente)
                 .orElseThrow(() -> new RuntimeException("Expediente no encontrado con ID: " + idExpediente));
 
-        expediente.setAceptado(true);
+        expediente.setAceptadoPaciente(true);
+        expedienteClinicoRepository.save(expediente);
+    }
+
+    @Override
+    public void denegarExpedientePaciente(int idExpediente) {
+        ExpedienteClinico expediente = expedienteClinicoRepository.findById((long) idExpediente)
+                .orElseThrow(() -> new RuntimeException("Expediente no encontrado con ID: " + idExpediente));
+
+        expediente.setAceptadoPaciente(false);
         expedienteClinicoRepository.save(expediente);
     }
 }

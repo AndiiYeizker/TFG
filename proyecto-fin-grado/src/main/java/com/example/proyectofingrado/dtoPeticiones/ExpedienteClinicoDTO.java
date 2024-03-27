@@ -29,5 +29,6 @@ public class ExpedienteClinicoDTO {
     private int diasIncubacion;
     private int diasInfeccion;
     private int diasTotales;
-    private boolean aceptado;
+    private boolean aceptadoPaciente;
+    private boolean aceptadoMedico;
 }

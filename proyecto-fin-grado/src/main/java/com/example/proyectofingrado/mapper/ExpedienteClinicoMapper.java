@@ -12,7 +12,8 @@ public class ExpedienteClinicoMapper {
         dto.setEnfermedad(expedienteClinico.getEnfermedad());
         dto.setFechaInicioSintomas(expedienteClinico.getFechaInicioSintomas());
         dto.setId(expedienteClinico.getId());
-        dto.setAceptado(expedienteClinico.isAceptado());
+        dto.setAceptadoPaciente(expedienteClinico.isAceptadoPaciente());
+        dto.setAceptadoMedico(expedienteClinico.isAceptadoMedico());
         dto.setDiasTotales(expedienteClinico.getDiasTotales());
         dto.setEstadoSEIRD(expedienteClinico.getEstadoSEIRD());
         dto.setDiasInfeccion(expedienteClinico.getDiasInfeccion());
@@ -26,7 +27,8 @@ public class ExpedienteClinicoMapper {
         expedienteClinico.setEnfermedad(dto.getEnfermedad());
         expedienteClinico.setFechaInicioSintomas(dto.getFechaInicioSintomas());
         expedienteClinico.setId(dto.getId());
-        expedienteClinico.setAceptado(dto.isAceptado());
+        expedienteClinico.setAceptadoPaciente(dto.isAceptadoPaciente());
+        expedienteClinico.setAceptadoMedico(dto.isAceptadoMedico());
         expedienteClinico.setDiasTotales(dto.getDiasTotales());
         expedienteClinico.setEstadoSEIRD(dto.getEstadoSEIRD());
         expedienteClinico.setDiasInfeccion(dto.getDiasInfeccion());
