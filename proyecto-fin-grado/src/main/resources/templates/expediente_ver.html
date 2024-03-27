@@ -41,9 +41,6 @@
                     <p> Días totales que ha tenido síntomas: <strong th:text="${expediente.diasInfeccion}"></strong></p>
                     <p> Días totales de enfermedad (desde primer contacto hasta cese de síntomas): <strong th:text="${expediente.diasTotales}"></strong></p>
                     <p>────────────────────────────────────────────────────────────────</p>
-                    <p> Aceptar registro para usar sus datos en el cálculo de datos de población: <strong th:text="${expediente.aceptado}"></strong></p>
-                    <a id="btnAñadirRegistro" class="btn btn-warning btn-sm"
-                       th:href="@{/expedientes/{idExpediente}/aceptar(idExpediente=${expediente.id})}">Añadir</a>
                 </div>
             </div>
         </div>

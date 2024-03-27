@@ -5,6 +5,7 @@ import com.example.proyectofingrado.dtoPeticiones.PacienteDTO;
 import com.example.proyectofingrado.entity.Enfermedad;
 import com.example.proyectofingrado.entity.ExpedienteClinico;
 import com.example.proyectofingrado.entity.Paciente;
+import com.example.proyectofingrado.entity.t_estadoSEIRD;
 import com.example.proyectofingrado.service.EnfermedadService;
 import com.example.proyectofingrado.service.ExpedienteClinicoService;
 import com.example.proyectofingrado.service.PacienteService;
@@ -58,21 +59,20 @@ public class ExpedienteClinicoController {
         return "expediente_crear";
     }
 
-
-
     //Guarda un expediente clinico y redirecciona a ver paciente
     @PostMapping("/expedientes/crear/{idPaciente}")
     public String guardarExpedienteClinico(@PathVariable Long idPaciente, @ModelAttribute("expediente") ExpedienteClinicoDTO expedienteClinicoDTO,@RequestParam(value = "aceptadoPaciente", required = false) String aceptadoPaciente) {
         Enfermedad enfermedad = enfermedadService.obtenerEnfermedadPorNombre(expedienteClinicoDTO.getEnfermedad().getNombre());
         expedienteClinicoDTO.setEnfermedad(enfermedad);
-
+        t_estadoSEIRD estado = new t_estadoSEIRD();
+        estado.setCodigo("SUS"); //estado suspceptible por defecto
+        expedienteClinicoDTO.setEstadoSEIRD(estado);
         // Verifica si se marcó el checkbox
         if (aceptadoPaciente != null && aceptadoPaciente.equals("true")) {
             expedienteClinicoDTO.setAceptadoPaciente(true);
         } else {
             expedienteClinicoDTO.setAceptadoPaciente(false);
         }
-
         expedienteClinicoService.guardarExpedienteClinico(Math.toIntExact(idPaciente), expedienteClinicoDTO);
         return "redirect:/menu";
     }
@@ -82,6 +82,8 @@ public class ExpedienteClinicoController {
         expedienteClinicoService.aceptarExpedienteMedico(idExpediente);
         return "redirect:/pacientes";
     }
+
+
     /** Página web para actualizar los datos de un expediente clínico*/
     //en el futuro poner que la lsita de enfermedades traiga solo las que tengan estado seird de infeccion
     @GetMapping("/expedientes/{idExpediente}/actualizar")
@@ -93,7 +95,6 @@ public class ExpedienteClinicoController {
         model.addAttribute("expediente", expedienteClinicoDTO);
         return "expediente_actualizar";
     }
-
     // Método para actualizar la información de un expediente clínico
     @PostMapping("/expedientes/{idExpediente}")
     public String actualizarExpedienteClinico(@PathVariable("idExpediente") int idExpediente, @Valid @ModelAttribute("expediente")
