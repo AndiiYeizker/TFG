@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Aplicacion Sanitaria - Crear Expediente Clínico</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -28,7 +29,7 @@
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center">Crear Expediente Clínico</h2>
+                    <h2 class="text-center">Añadir una nueva enfermedad</h2>
                 </div>
                 <div class="card-body">
                     <form method="post" role="form" th:action="@{/expedientes/crear/{idPaciente}(idPaciente=${expediente.paciente.id})}" th:object="${expediente}">
@@ -56,11 +57,21 @@
                             <input class="form-control" type="text" id="fechaInicioSintomas" name="fechaInicioSintomas" th:value="${#dates.format(expediente.fechaInicioSintomas, 'dd-MM-yyyy')}" />
                         </div>
 
-                        <h4>Ayúdanos a mejorar la aplicacion aportando los datos de tu enfermedad:</h4>
-                        <p>Consiento que los datos de mi enfermedad se usen para estudio:</p>
-                        <label for="aceptadoPaciente">¿Aceptar paciente?</label>
-                        <input type="checkbox" id="aceptadoPaciente" name="aceptadoPaciente" value="true">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">¡Atención!</div>
+                            <div class="panel-body">Los datos generados en el calendario son orientativos y se basan en una
+                                variedad de datos y estudios que involucran múltiples variables. Es importante tener
+                                en cuenta que estos datos pueden no reflejar exactamente la realidad de tu enfermedad
+                                debido a las variaciones individuales y otros factores que pueden influir en tu situación
+                                específica.</div>
+                        </div>
 
+                        <br>
+
+                        <h4>Ayúdanos a mejorar la aplicacion aportando los datos de tu enfermedad. Tus datos personales no se compartirán, solo los días que ha durado la enfermedad</h4>
+                        <label for="aceptadoPaciente">Consiento que los datos de mi enfermedad se usen para estudio:</label>
+                        <input type="checkbox" id="aceptadoPaciente" name="aceptadoPaciente" value="true">
+                        <br>
                         <label for="diasIncubacion">Días desde el primer contacto hasta primer día de síntomas:</label>
                         <input type="number" id="diasIncubacion" name="diasIncubacion" maxlength="8"><br><br>
 
